@@ -7,6 +7,7 @@ public abstract class Moottori {
 	private double simulointiaika = 0;
 	
 	private Kello kello;
+	private int num;
 	
 	protected Tapahtumalista tapahtumalista;
 	protected Palvelupiste[] palvelupisteet;
