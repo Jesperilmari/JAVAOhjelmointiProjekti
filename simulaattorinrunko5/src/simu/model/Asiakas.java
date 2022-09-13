@@ -13,6 +13,9 @@ public class Asiakas {
 	private static int i = 1;
 	private static long sum = 0;
 	
+	
+	
+	
 	public Asiakas(){
 	    id = i++;
 	    
