@@ -38,12 +38,12 @@ public class Palvelupiste {
 
 	public Asiakas otaJonosta(){  // Poistetaan palvelussa ollut
 		varattu = false;
-		return jono.poll();
+		return jono.poll(); //poll() hakee jonon ensimmäisessä alkiossa olevan asiakkkaan
 	}
 
 	public void aloitaPalvelu(){  //Aloitetaan uusi palvelu, asiakas on jonossa palvelun aikana
 		
-		Trace.out(Trace.Level.INFO, "Aloitetaan uusi palvelu asiakkaalle " + jono.peek().getId());
+		Trace.out(Trace.Level.INFO, "Aloitetaan uusi palvelu asiakkaalle " + jono.peek().getId()); //peek() hakee jonon ensimmäisessä alkiossa olevan asiakkaan
 		
 		varattu = true;
 		double palveluaika = generator.sample();
