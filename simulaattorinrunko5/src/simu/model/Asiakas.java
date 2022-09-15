@@ -1,5 +1,7 @@
 package simu.model;
 
+import java.util.Random;
+
 import simu.framework.Kello;
 import simu.framework.Trace;
 
@@ -13,12 +15,12 @@ public class Asiakas {
 	private static int i = 1;
 	private static long sum = 0;
 	private int test1;
+	private int lento;
 	
 	
 	
 	public Asiakas(){
 	    id = i++;
-	    
 		saapumisaika = Kello.getInstance().getAika();
 		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
 	}
