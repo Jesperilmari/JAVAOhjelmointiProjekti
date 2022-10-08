@@ -9,7 +9,8 @@ public enum TapahtumanTyyppi {
 	checkinOut,
 	turvaIn,
 	turvaOut,
-	lahtoporttiIn,
+	lahtoporttiInEU,
+	lahtoporttiInMuu,
 	lahtoporttiOut,
 	passiIn,
 	passiOut

@@ -59,5 +59,9 @@ public class Palvelupiste {
 	public boolean onJonossa(){
 		return jono.size() != 0;
 	}
+	
+	public int jononPituus() {
+		return jono.size();
+	}
 
 }

@@ -18,7 +18,7 @@ public void run() {
 	// TODO Auto-generated method stub
 	Trace.setTraceLevel(Level.INFO);
 	Moottori m = new OmaMoottori();
-	m.setSimulointiaika(1000);
+	m.setSimulointiaika(24000);
 	m.aja();
 	
 }

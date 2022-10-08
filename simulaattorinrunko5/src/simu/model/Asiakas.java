@@ -18,10 +18,16 @@ public class Asiakas {
 	private int lento;
 	
 	
+	private boolean onkoEU = true; // onko lento EU:n sisällä vai ei
+	
+	private final Random r = new Random();
 	
 	public Asiakas(){
 	    id = i++;
 		saapumisaika = Kello.getInstance().getAika();
+		
+		setOnkoEU(r.nextBoolean());
+		
 		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
 	}
 
@@ -45,6 +51,7 @@ public class Asiakas {
 		return id;
 	}
 	
+	
 	public void raportti(){
 		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");
 		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
@@ -54,5 +61,15 @@ public class Asiakas {
 		double keskiarvo = sum/id;
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
 	}
+
+	public boolean isOnkoEU() {
+		return onkoEU;
+	}
+
+	public void setOnkoEU(boolean onkoEU) {
+		this.onkoEU = onkoEU;
+	}
+	
+
 
 }
