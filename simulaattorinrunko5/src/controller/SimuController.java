@@ -6,17 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import simu.model.OmaMoottori;
 import simu.model.Palvelupiste;
+import simu.model.Tulokset;
 
 public class SimuController {
 	
-	int kesto;
-	int lentojenMaara;
-	int turvaMaara;
-	int passiMaara;
-	
 	OmaMoottori omaMoottori = new OmaMoottori();
+	Tulokset tulokset = Tulokset.getInstance();
 	MainGUI view;
+	
 	private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
+	
 	
 	public SimuController(MainGUI mainGUI){
 		this.view = mainGUI;
@@ -27,10 +26,10 @@ public class SimuController {
 	}
 	
 	public void setMaarat(int kesto, int lentojenMaara, int turvaMaara, int passiMaara) {
-		this.kesto = kesto;
-		this.lentojenMaara = lentojenMaara;
-		this.turvaMaara = turvaMaara;
-		this.passiMaara = passiMaara;
+		tulokset.setSimuloinnin_kokonaisaika(kesto * 1440);
+		tulokset.setFlightNum(lentojenMaara);
+		tulokset.setTurvatarkastuksienMaara(turvaMaara);
+		tulokset.setPassitarkastuksienMaara(passiMaara);
 	}
 	
 	/*public void setPpData() {

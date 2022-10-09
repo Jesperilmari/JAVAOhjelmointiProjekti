@@ -92,6 +92,9 @@ public class MainGUI extends Application{
 					populateListView();
 					
 				} catch (NumberFormatException e ) {
+					alert.setTitle("Error");
+					alert.setHeaderText("Kenttiä ei voi jättää tyhjäksi ja niissä on käytettävä numeroita!");
+					alert.setContentText("Paina ok jatkaaksesi");
 					alert.showAndWait();
 					e.printStackTrace();
 				}

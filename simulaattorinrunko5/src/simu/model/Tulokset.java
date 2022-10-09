@@ -10,7 +10,8 @@ public class Tulokset {
 	private int palvellut_asiakkaat;
 	private int palveluaika;
 	private int keskimaarainen_palveluaika;
-	
+	private int turvaTarkastustenMaara;
+	private int passiTarkastustenMaara;
 	
 	private double simulationTime;
 	private int flightNum;
@@ -21,7 +22,9 @@ public class Tulokset {
 	private Tulokset() {
 		
 		numOfCustomers = totalNumOfCusterms * flightNum;
+	
 	}
+	
 	public static Tulokset getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new Tulokset();
@@ -103,5 +106,21 @@ public class Tulokset {
 
 	public void setKeskimaarainen_palveluaika(int keskimaarainen_palveluaika) {
 		this.keskimaarainen_palveluaika = keskimaarainen_palveluaika;
+	}
+	
+	public void setTurvatarkastuksienMaara(int turvaTarkastustenMaara) {
+		this.turvaTarkastustenMaara = turvaTarkastustenMaara;
+	}
+	
+	public int getTurvatarkastuksienMaara() {
+		return turvaTarkastustenMaara;
+	}
+	
+	public void setPassitarkastuksienMaara(int passiTarkastustenMaara) {
+		this.passiTarkastustenMaara = passiTarkastustenMaara;
+	}
+	
+	public int getPassitarkastuksienMaara() {
+		return passiTarkastustenMaara;
 	}
 }

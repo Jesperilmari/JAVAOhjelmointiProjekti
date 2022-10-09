@@ -45,7 +45,7 @@ public class OmaMoottori extends Moottori{
 		palvelupisteet[1]=new Palvelupiste(new Normal(7, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInEU, 2);
 		
 		//
-		palvelupisteet[2]=new Palvelupiste(new Normal(1, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu, 3);
+		palvelupisteet[2]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu, 3);
 		
 		//
 		palvelupisteet[3]=new Palvelupiste(new Normal(22, 1), tapahtumalista, TapahtumanTyyppi.passiIn, 4);
@@ -179,6 +179,9 @@ public class OmaMoottori extends Moottori{
 		}	
 	}
 
+	public Palvelupiste[] getPalvelupisteet() {
+		return palvelupisteet;
+	}
 	
 	@Override
 	protected void tulokset() {	
