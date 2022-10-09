@@ -12,12 +12,45 @@ public class Tulokset {
 	private int keskimaarainen_palveluaika;
 	
 	
+	private double simulationTime;
+	private int flightNum;
+	private int numOfCustomers ;
+	private int totalNumOfCusterms = 300;
 	
+	
+	private Tulokset() {
+		
+		numOfCustomers = totalNumOfCusterms * flightNum;
+	
+	
+	}
 	public static Tulokset getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new Tulokset();
 		}
 		return INSTANCE;
+	}
+	
+	
+	
+	public int getNumOfCustomers() {
+		return numOfCustomers;
+	}
+
+	public double getSimulationTime() {
+		return simulationTime;
+	}
+
+	public void setSimulationTime(double simulationTime) {
+		this.simulationTime = simulationTime;
+	}
+
+	public int getFlightNum() {
+		return flightNum;
+	}
+
+	public void setFlightNum(int flightNum) {
+		this.flightNum = flightNum;
 	}
 
 
