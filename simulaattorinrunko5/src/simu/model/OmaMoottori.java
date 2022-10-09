@@ -28,6 +28,7 @@ public class OmaMoottori extends Moottori{
 	double temp1 = 0;
 	double temp2 = 0;
 	
+	
 	public OmaMoottori(){
 		
 		
@@ -115,6 +116,7 @@ public class OmaMoottori extends Moottori{
 				
 			} else if (a.isOnkoEU() == false) {
 				palvelupisteet[2].lisaaJonoon(a);
+				palvelupisteet[0].lisaaPalveltuAsiakas();
 			}
 			
 			break;
@@ -178,7 +180,7 @@ public class OmaMoottori extends Moottori{
 	protected void tulokset() {	
 		//System.out.println("\n\n" + "Simulointi päättyi kello " + Kello.getInstance().getAika());
 		//System.out.println("Palveltuja asiakkaita yhteensä: " + palvellut);
-		//System.out.println("Palveltuja EU asiakkaita: " + eu_asiakkaat + " ja palveltuja ei EU asiakkaita: " + ei_eu_asiakkaat);
+		System.out.println("Palveltuja EU asiakkaita: " + eu_asiakkaat + " ja palveltuja ei EU asiakkaita: " + ei_eu_asiakkaat);
 		
 		System.out.println("Turvatarkastuksen palvellut asiakkaat: " + palvelupisteet[0].getPalvellut_asiakkaat() + " ja niiden palvelemiseen käytetty aika: " + palvelupisteet[0].getPalveluaika());
 		System.out.println("Turvatarkastuksen keskimääräinen palveluaika: " + (palvelupisteet[0].getKeskimaarainen_palveluaika()));
@@ -187,6 +189,7 @@ public class OmaMoottori extends Moottori{
 		
 		Tulokset.getInstance().setPalvellut_asiakkaat(palvellut);
 		Tulokset.getInstance().setSimuloinnin_kokonaisaika(Kello.getInstance().getAika());
+		
 		//System.out.println("Tulokset ... puuttuvat vielä");
 		
 	}

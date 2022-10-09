@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX Library"/>
+	<classpathentry kind="lib" path="C:/Users/samuo/Downloads/mariadb-java-client-3.0.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
