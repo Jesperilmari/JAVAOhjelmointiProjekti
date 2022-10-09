@@ -28,7 +28,6 @@ public class OmaMoottori extends Moottori{
 	double temp1 = 0;
 	double temp2 = 0;
 	
-	
 	public OmaMoottori(){
 		
 		
@@ -46,7 +45,7 @@ public class OmaMoottori extends Moottori{
 		palvelupisteet[1]=new Palvelupiste(new Normal(7, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInEU, 2);
 		
 		//
-		palvelupisteet[2]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu, 3);
+		palvelupisteet[2]=new Palvelupiste(new Normal(1, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu, 3);
 		
 		//
 		palvelupisteet[3]=new Palvelupiste(new Normal(22, 1), tapahtumalista, TapahtumanTyyppi.passiIn, 4);
@@ -88,7 +87,7 @@ public class OmaMoottori extends Moottori{
 			*/
 			
 			palvelupisteet[0].lisaaJonoon(new Asiakas());
-			temp1 = Kello.getInstance().getAika();
+			palvelupisteet[0].setAloitusAika(Kello.getInstance().getAika());
 			
 			saapumisprosessi.generoiSeuraava();	
 			break;
@@ -111,12 +110,12 @@ public class OmaMoottori extends Moottori{
 			if (a.isOnkoEU() == true) {
 				palvelupisteet[1].lisaaJonoon(a);
 				palvelupisteet[0].lisaaPalveltuAsiakas();
-				temp2 = Kello.getInstance().getAika();
-				palvelupisteet[0].lisaaPalveluAikaa(temp2 - temp1);
+				palvelupisteet[0].setLoppuAika(Kello.getInstance().getAika());
+				palvelupisteet[0].lisaaPalveluAikaa(palvelupisteet[0].getLoppuAika() - palvelupisteet[0].getAloitusAika());
 				
 			} else if (a.isOnkoEU() == false) {
-				palvelupisteet[2].lisaaJonoon(a);
 				palvelupisteet[0].lisaaPalveltuAsiakas();
+				palvelupisteet[2].lisaaJonoon(a);
 			}
 			
 			break;
@@ -136,6 +135,10 @@ public class OmaMoottori extends Moottori{
 		case passiIn:
 			a = palvelupisteet[3].otaJonosta();
 			palvelupisteet[5].lisaaJonoon(a);
+
+			palvelupisteet[5].setAloitusAika(Kello.getInstance().getAika());
+			
+		
 			break;
 			
 		case lahtoporttiOut:
@@ -152,14 +155,15 @@ public class OmaMoottori extends Moottori{
 			if (a == null) {
 				break;
 			} else {
+				palvelupisteet[5].lisaaPalveltuAsiakas();
+				palvelupisteet[5].setLoppuAika(Kello.getInstance().getAika());
+				palvelupisteet[5].lisaaPalveluAikaa(palvelupisteet[5].getLoppuAika() - palvelupisteet[5].getAloitusAika());
 				a.setPoistumisaika(Kello.getInstance().getAika());
 				ei_eu_asiakkaat++;
 				palvellut++;
 				a.raportti();
 			}
-			
-			
-			
+	
 		case checkinIn:
 			break;
 		case checkinOut:
@@ -180,16 +184,25 @@ public class OmaMoottori extends Moottori{
 	protected void tulokset() {	
 		//System.out.println("\n\n" + "Simulointi päättyi kello " + Kello.getInstance().getAika());
 		//System.out.println("Palveltuja asiakkaita yhteensä: " + palvellut);
-		System.out.println("Palveltuja EU asiakkaita: " + eu_asiakkaat + " ja palveltuja ei EU asiakkaita: " + ei_eu_asiakkaat);
+		//System.out.println("Palveltuja EU asiakkaita: " + eu_asiakkaat + " ja palveltuja ei EU asiakkaita: " + ei_eu_asiakkaat);
 		
 		System.out.println("Turvatarkastuksen palvellut asiakkaat: " + palvelupisteet[0].getPalvellut_asiakkaat() + " ja niiden palvelemiseen käytetty aika: " + palvelupisteet[0].getPalveluaika());
 		System.out.println("Turvatarkastuksen keskimääräinen palveluaika: " + (palvelupisteet[0].getKeskimaarainen_palveluaika()));
-		System.out.println(palvelupisteet[0].jononPituus());
-		System.out.println("Jos haluat ehtiä turvatarkastuksesta tule: " + (palvelupisteet[0].getKeskimaarainen_palveluaika() * palvelupisteet[0].jononPituus() / 16.6666666667) + " minuuttia etuajassa kentälle!");
+		//System.out.println(palvelupisteet[0].jononPituus());
+		//palvelupisteet[0].getKeskimaarainen_palveluaika();
+		System.out.println("Jos haluat ehtiä turvatarkastuksesta tule: " + (palvelupisteet[0].ehtiAika()) + " minuuttia etuajassa kentälle!");
 		
+		
+		
+		
+		System.out.println("Passitarkastuksen palvellut asiakkaat: " + palvelupisteet[5].getPalvellut_asiakkaat() + " ja niiden palvelemiseen käytetty aika: " + palvelupisteet[5].getPalveluaika());
+		System.out.println("Passitarkastuksen keskimääräinen palveluaika: " + (palvelupisteet[5].getKeskimaarainen_palveluaika()));
+		//System.out.println(palvelupisteet[5].jononPituus());
+		//palvelupisteet[5].getKeskimaarainen_palveluaika();
+		System.out.println("Jos haluat ehtiä passitarkastuken tule: " + (palvelupisteet[5].ehtiAika()) + " minuuttia etuajassa kentälle!");
+	
 		Tulokset.getInstance().setPalvellut_asiakkaat(palvellut);
 		Tulokset.getInstance().setSimuloinnin_kokonaisaika(Kello.getInstance().getAika());
-		
 		//System.out.println("Tulokset ... puuttuvat vielä");
 		
 	}
