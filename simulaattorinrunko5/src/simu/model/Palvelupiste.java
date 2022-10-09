@@ -16,7 +16,8 @@ public class Palvelupiste {
 	
 	private ContinuousGenerator generator;
 	private Tapahtumalista tapahtumalista;
-	private TapahtumanTyyppi skeduloitavanTapahtumanTyyppi; 
+	private TapahtumanTyyppi skeduloitavanTapahtumanTyyppi;
+	public int id;
 	
 	private double palveluaika;
 	private int palvellut_asiakkaat;
@@ -27,10 +28,11 @@ public class Palvelupiste {
 	private boolean varattu = false;
 
 
-	public Palvelupiste(ContinuousGenerator generator, Tapahtumalista tapahtumalista, TapahtumanTyyppi tyyppi){
+	public Palvelupiste(ContinuousGenerator generator, Tapahtumalista tapahtumalista, TapahtumanTyyppi tyyppi, int id){
 		this.tapahtumalista = tapahtumalista;
 		this.generator = generator;
 		this.skeduloitavanTapahtumanTyyppi = tyyppi;
+		this.id = id;
 				
 	}
 

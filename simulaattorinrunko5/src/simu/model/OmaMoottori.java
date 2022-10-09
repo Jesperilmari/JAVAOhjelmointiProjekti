@@ -38,22 +38,22 @@ public class OmaMoottori extends Moottori{
 		//}
 		
 		// 
-		palvelupisteet[0]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.turvaIn);
+		palvelupisteet[0]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.turvaIn, 1);
 		
 		
 		//
-		palvelupisteet[1]=new Palvelupiste(new Normal(7, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInEU);
+		palvelupisteet[1]=new Palvelupiste(new Normal(7, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInEU, 2);
 		
 		//
-		palvelupisteet[2]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu);
+		palvelupisteet[2]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu, 3);
 		
 		//
-		palvelupisteet[3]=new Palvelupiste(new Normal(22, 1), tapahtumalista, TapahtumanTyyppi.passiIn);
+		palvelupisteet[3]=new Palvelupiste(new Normal(22, 1), tapahtumalista, TapahtumanTyyppi.passiIn, 4);
 		
 		//
-		palvelupisteet[4]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut);
+		palvelupisteet[4]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut, 5);
 		
-		palvelupisteet[5]=new Palvelupiste(new Normal(5, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut_eiEU);
+		palvelupisteet[5]=new Palvelupiste(new Normal(5, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut_eiEU, 6);
 		// Asiakkaita saapuu ~2min välein
 		saapumisprosessi = new Saapumisprosessi(new Normal(2, 1), tapahtumalista, TapahtumanTyyppi.luoLennot);
 
