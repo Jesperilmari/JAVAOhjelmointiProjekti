@@ -173,6 +173,9 @@ public class OmaMoottori extends Moottori{
 		}	
 	}
 
+	public Palvelupiste[] getPalvelupisteet() {
+		return palvelupisteet;
+	}
 	
 	@Override
 	protected void tulokset() {	
