@@ -21,8 +21,6 @@ public class Tulokset {
 	private Tulokset() {
 		
 		numOfCustomers = totalNumOfCusterms * flightNum;
-	
-	
 	}
 	public static Tulokset getInstance() {
 		if (INSTANCE == null) {
