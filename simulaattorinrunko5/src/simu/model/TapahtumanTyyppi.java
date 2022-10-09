@@ -12,6 +12,7 @@ public enum TapahtumanTyyppi {
 	lahtoporttiInEU,
 	lahtoporttiInMuu,
 	lahtoporttiOut,
+	lahtoporttiOut_eiEU,
 	passiIn,
 	passiOut
 }

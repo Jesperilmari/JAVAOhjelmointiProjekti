@@ -18,6 +18,10 @@ public class Palvelupiste {
 	private Tapahtumalista tapahtumalista;
 	private TapahtumanTyyppi skeduloitavanTapahtumanTyyppi; 
 	
+	private double palveluaika;
+	private int palvellut_asiakkaat;
+	private double keskimaarainen_palveluaika;
+	
 	//JonoStartegia strategia; //optio: asiakkaiden järjestys
 	
 	private boolean varattu = false;
@@ -62,6 +66,45 @@ public class Palvelupiste {
 	
 	public int jononPituus() {
 		return jono.size();
+	}
+
+
+	public double getPalveluaika() {
+		return palveluaika;
+	}
+
+
+	public void lisaaPalveluAikaa(double aika) {
+		palveluaika += aika;
+	}
+	
+	public void setPalveluaika(double palveluaika) {
+		this.palveluaika = palveluaika;
+	}
+
+
+	public int getPalvellut_asiakkaat() {
+		return palvellut_asiakkaat;
+	}
+
+
+	public void setPalvellut_asiakkaat(int palvellut_asiakkaat) {
+		this.palvellut_asiakkaat = palvellut_asiakkaat;
+	}
+	
+	public void lisaaPalveltuAsiakas() {
+		palvellut_asiakkaat++;
+	}
+
+
+	public double getKeskimaarainen_palveluaika() {
+		keskimaarainen_palveluaika = palveluaika / palvellut_asiakkaat;
+		return keskimaarainen_palveluaika;
+	}
+
+
+	public void setKeskimaarainen_palveluaika(double keskimaarainen_palveluaika) {
+		this.keskimaarainen_palveluaika = keskimaarainen_palveluaika;
 	}
 
 }
