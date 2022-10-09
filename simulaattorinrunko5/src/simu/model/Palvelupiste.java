@@ -23,8 +23,40 @@ public class Palvelupiste {
 	private int palvellut_asiakkaat;
 	private double keskimaarainen_palveluaika;
 	
+	
+	
+	private double ehtiAika;
+	private double aloitusAika;
+	private double loppuAika;
+	
 	//JonoStartegia strategia; //optio: asiakkaiden järjestys
 	
+	public double getAloitusAika() {
+		return aloitusAika;
+	}
+
+
+
+
+	public void setAloitusAika(double d) {
+		this.aloitusAika = d;
+	}
+
+
+
+
+	public double getLoppuAika() {
+		return loppuAika;
+	}
+
+
+
+
+	public void setLoppuAika(double loppuAika) {
+		this.loppuAika = loppuAika;
+	}
+
+
 	private boolean varattu = false;
 
 
@@ -35,6 +67,8 @@ public class Palvelupiste {
 		this.id = id;
 				
 	}
+	
+	
 
 
 	public void lisaaJonoon(Asiakas a){   // Jonon 1. asiakas aina palvelussa
@@ -108,5 +142,12 @@ public class Palvelupiste {
 	public void setKeskimaarainen_palveluaika(double keskimaarainen_palveluaika) {
 		this.keskimaarainen_palveluaika = keskimaarainen_palveluaika;
 	}
+	
+	
+	public double ehtiAika () {
+		 ehtiAika = (int) (this.keskimaarainen_palveluaika * this.jononPituus() / 16.6666666667);
+		 return ehtiAika;
+	}
+	
 
 }
