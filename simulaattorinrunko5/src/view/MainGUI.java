@@ -91,10 +91,7 @@ public class MainGUI extends Application{
 					
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
 					
-					ppListView.getItems().clear();
-					populateListView();
-					
-					testi.Simulaattori.main(null);
+					simuController.kaynnistaSimulointi();
 					
 				} catch (NumberFormatException e ) {
 					alert.setTitle("Error");
@@ -107,26 +104,6 @@ public class MainGUI extends Application{
 		});
 	}
 
-	@SuppressWarnings("unchecked")
-	private void populateListView() {
-		System.out.println(ppListView);
-		String nimi = "";
-		for(int i = 0; i < simuController.getPp().length; i++) {
-			if (simuController.getPp()[i].id == 1) {
-				nimi = "Turvatarkastus";
-			} else if (simuController.getPp()[i].id == 2) {
-				nimi = "Passitarkastus";
-			} else if (simuController.getPp()[i].id == 3) {
-				nimi = "Lähtöportti, EU:n sisäinen";
-			}  else if (simuController.getPp()[i].id == 4) {
-				nimi = "Lähtöportti, EU:n ulkopuolinen";
-			}  else if (simuController.getPp()[i].id == 5) {
-				nimi = "Viimeinen piste";
-			}
-			ppListView.getItems().add(nimi);
-		}
-
-	}
 
 	public static void main(String[] args) {
 		launch(args);
