@@ -37,7 +37,7 @@ public class OmaMoottori extends Moottori{
 			
 		//}
 		
-		// 
+		//
 		palvelupisteet[0]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.turvaIn, 1);
 		
 		

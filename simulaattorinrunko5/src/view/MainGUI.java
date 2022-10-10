@@ -1,7 +1,5 @@
 package view;
 
-import java.util.ArrayList;
-
 import controller.SimuController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -10,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -26,6 +25,9 @@ public class MainGUI extends Application{
 	int lentojenMaara;
 	int turvaMaara;
 	int passiMaara;
+	
+	int 
+	
 
 	@FXML
 	private ListView ppListView;
@@ -39,13 +41,14 @@ public class MainGUI extends Application{
 	private TextField turvaMaaraTF;
 	@FXML
 	private TextField passiMaaraTF;
+	@FXML
+	private Canvas mainCanvas;
 
 
 	//private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
 	//ArrayList<Palvelupiste> pp = new ArrayList<Palvelupiste>();
 
 	SimuController simuController = new SimuController(this);
-
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -62,6 +65,7 @@ public class MainGUI extends Application{
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("Lentokenttäsimulaattori");
 		primaryStage.show();
 
 		Alert alert = new Alert(AlertType.WARNING);
@@ -89,7 +93,10 @@ public class MainGUI extends Application{
 					
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
 					
+					ppListView.getItems().clear();
 					populateListView();
+					
+					testi.Simulaattori.main(null);
 					
 				} catch (NumberFormatException e ) {
 					alert.setTitle("Error");
