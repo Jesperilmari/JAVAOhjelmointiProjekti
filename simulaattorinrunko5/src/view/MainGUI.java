@@ -1,5 +1,8 @@
 package view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import controller.SimuController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -9,11 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 //import simu.model.Palvelupiste;
 
@@ -27,8 +32,8 @@ public class MainGUI extends Application{
 	int passiMaara;
 	
 
-	@FXML
-	private ListView ppListView;
+	/*@FXML
+	private ListView ppListView;*/
 	@FXML
 	private Button startBtn;
 	@FXML
@@ -41,12 +46,11 @@ public class MainGUI extends Application{
 	private TextField passiMaaraTF;
 	@FXML
 	private Canvas mainCanvas;
-
-
+	
+	private GraphicsContext gc;
+	
 	//private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
 	//ArrayList<Palvelupiste> pp = new ArrayList<Palvelupiste>();
-
-	SimuController simuController = new SimuController(this);
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -68,8 +72,6 @@ public class MainGUI extends Application{
 
 		Alert alert = new Alert(AlertType.WARNING);
 
-		ppListView = (ListView) scene.lookup("#ppListView");
-
 		startBtn = (Button) scene.lookup("#startBtn");
 
 		kestoTF = (TextField) scene.lookup("#kestoTF");
@@ -79,7 +81,27 @@ public class MainGUI extends Application{
 		turvaMaaraTF = (TextField) scene.lookup("#turvaMaaraTF");
 
 		passiMaaraTF = (TextField) scene.lookup("#passiMaaraTF");
+		
+		mainCanvas = (Canvas) scene.lookup("#mainCanvas");
 
+		gc = mainCanvas.getGraphicsContext2D();
+		
+		SimuController simuController = new SimuController(this, gc);
+		
+		String turvaTarkastusImgSrc = "\\view\\Images\\Turva.png";
+		
+		Image turvaTarkastusImg = new Image(turvaTarkastusImgSrc);
+		
+		gc.drawImage(turvaTarkastusImg, 10, 10, 40, 40);
+		
+		try {
+			simuController.piirraTurva();
+			simuController.piirraTurva();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	
+		
 		startBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -88,11 +110,15 @@ public class MainGUI extends Application{
 					lentojenMaara = Integer.parseInt(lentojenMaaraTF.getText());
 					turvaMaara = Integer.parseInt(turvaMaaraTF.getText());
 					passiMaara = Integer.parseInt(passiMaaraTF.getText());
-					
+
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
 					
 					simuController.kaynnistaSimulointi();
 					
+
+
+					testi.Simulaattori.main(null);
+
 				} catch (NumberFormatException e ) {
 					alert.setTitle("Error");
 					alert.setHeaderText("Kenttiä ei voi jättää tyhjäksi ja niissä on käytettävä numeroita!");
@@ -108,5 +134,6 @@ public class MainGUI extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
 
