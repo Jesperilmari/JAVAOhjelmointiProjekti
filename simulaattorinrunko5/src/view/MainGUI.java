@@ -26,8 +26,6 @@ public class MainGUI extends Application{
 	int turvaMaara;
 	int passiMaara;
 	
-	int 
-	
 
 	@FXML
 	private ListView ppListView;

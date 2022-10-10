@@ -1,20 +1,23 @@
 package simu.framework;
 
+import controller.IControllerMtoV;
+import controller.ISimuController;
 import simu.model.Palvelupiste;
 
-public abstract class Moottori {
+public abstract class Moottori extends Thread implements IMoottori {
 	
 	private double simulointiaika = 0;
 	
 	private Kello kello;
-	private int num;
 	
 	protected Tapahtumalista tapahtumalista;
 	protected Palvelupiste[] palvelupisteet;
 	
+	protected IControllerMtoV kontrolleri;
 
-	public Moottori(){
+	public Moottori(IControllerMtoV kontrolleri){
 
+		this.kontrolleri = kontrolleri;
 		kello = Kello.getInstance(); // Otetaan kello muuttujaan yksinkertaistamaan koodia
 		
 		tapahtumalista = new Tapahtumalista();
@@ -29,7 +32,7 @@ public abstract class Moottori {
 	}
 	
 	
-	public void aja(){
+	public void run(){
 		alustukset(); // luodaan mm. ensimmäinen tapahtuma
 		while (simuloidaan()){
 			

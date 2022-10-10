@@ -1,4 +1,7 @@
 package testi;
+import controller.IControllerMtoV;
+import controller.ISimuController;
+import controller.SimuController;
 import simu.framework.*;
 import simu.framework.Trace.Level;
 import simu.model.DAO;
@@ -8,6 +11,8 @@ import simu.model.Tulokset;
 public class Simulaattori implements Runnable { //Tekstipohjainen
 	
 	Tulokset tulokset = Tulokset.getInstance();
+	
+	private ISimuController kontrolleri;
 	
 	public static void main(String[] args) {
 		Simulaattori simu = new Simulaattori();
@@ -25,15 +30,19 @@ public void run() {
 	
 	Trace.setTraceLevel(Level.INFO);
 	
-	Moottori m = new OmaMoottori();
+	//Moottori m = new OmaMoottori();
 	DAO d = new DAO();
+	kontrolleri = new SimuController();
 	
-	Tulokset.getInstance().setSimuloinnin_kokonaisaika(24000);
-	Tulokset.getInstance().setFlightNum(10);
-	Tulokset.getInstance().setnumOfCustomers(200);
+	kontrolleri.kaynnistaSimulointi();
 	
-	m.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());
-	m.aja();
+	
+	//Tulokset.getInstance().setSimuloinnin_kokonaisaika(100);
+	//Tulokset.getInstance().setFlightNum(10);
+	//Tulokset.getInstance().setnumOfCustomers(200);
+	
+	//m.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());
+	//m.aja();
 	
 
 	

@@ -3,6 +3,8 @@ package simu.model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import controller.IControllerMtoV;
+import controller.ISimuController;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
 import eduni.distributions.Uniform;
@@ -34,9 +36,9 @@ public class OmaMoottori extends Moottori{
 	//ArrayList<String> cars = new ArrayList<String>();
 	ArrayList<int[]> arr = new ArrayList<int[]>();
 	
-	public OmaMoottori(){
+	public OmaMoottori(IControllerMtoV kontrolleri){
 		
-		
+		super(kontrolleri);
 		palvelupisteet = new Palvelupiste[6];
 		
 		//for(int i = 0; i < palvelupisteet.length; i++) {
@@ -70,6 +72,7 @@ public class OmaMoottori extends Moottori{
 	@Override
 	protected void alustukset() {
 		Kello.getInstance().setAika(0);
+		
 		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
 	}
 	
@@ -93,6 +96,7 @@ public class OmaMoottori extends Moottori{
 			if (testt > 0) {
 				palvelupisteet[0].lisaaJonoon(new Asiakas());
 				saapumisprosessi.generoiSeuraava();	
+				
 				palvelupisteet[0].setAloitusAika(Kello.getInstance().getAika());
 				testt--;
 			}
@@ -153,9 +157,6 @@ public class OmaMoottori extends Moottori{
 			
 			palvelupisteet[5].lisaaJonoon(a);
 
-			
-			
-		
 			break;
 			
 		case lahtoporttiOut:
@@ -230,6 +231,23 @@ public class OmaMoottori extends Moottori{
 		System.out.println(temp1);
 		
 	}
+
+
+	@Override
+	public void setDelay(long aika) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public long getDelay() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 
 	
 }
