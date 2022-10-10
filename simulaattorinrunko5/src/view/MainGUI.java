@@ -30,7 +30,10 @@ public class MainGUI extends Application{
 	int lentojenMaara;
 	int turvaMaara;
 	int passiMaara;
+<<<<<<< Upstream, based on origin/main
 	
+=======
+>>>>>>> 17a0606 ui juttui
 
 	/*@FXML
 	private ListView ppListView;*/
@@ -113,10 +116,16 @@ public class MainGUI extends Application{
 
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
 					
+<<<<<<< Upstream, based on origin/main
 					simuController.kaynnistaSimulointi();
+=======
+>>>>>>> 17a0606 ui juttui
 					
 
+<<<<<<< Upstream, based on origin/main
 
+=======
+>>>>>>> 17a0606 ui juttui
 					testi.Simulaattori.main(null);
 
 				} catch (NumberFormatException e ) {
@@ -130,7 +139,10 @@ public class MainGUI extends Application{
 		});
 	}
 
+<<<<<<< Upstream, based on origin/main
 
+=======
+>>>>>>> 17a0606 ui juttui
 	public static void main(String[] args) {
 		launch(args);
 	}

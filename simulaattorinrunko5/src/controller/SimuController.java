@@ -4,7 +4,10 @@ import view.MainGUI;
 import javax.swing.text.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+<<<<<<< Upstream, based on origin/main
 import simu.framework.IMoottori;
+=======
+>>>>>>> 17a0606 ui juttui
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -14,12 +17,18 @@ import simu.model.Palvelupiste;
 import simu.model.Tulokset;
 import testi.Simulaattori;
 
+<<<<<<< Upstream, based on origin/main
 public class SimuController implements ISimuController, IControllerMtoV {
 	
 	//OmaMoottori omaMoottori = new OmaMoottori();
 	
 	private IMoottori moottori;
 	
+=======
+public class SimuController extends Canvas {
+
+	OmaMoottori omaMoottori = new OmaMoottori();
+>>>>>>> 17a0606 ui juttui
 	Tulokset tulokset = Tulokset.getInstance();
 	MainGUI view;
 	GraphicsContext gc;
@@ -36,11 +45,17 @@ public class SimuController implements ISimuController, IControllerMtoV {
 		this.view = mainGUI;
 		this.gc = gc;
 	}
+<<<<<<< Upstream, based on origin/main
 	
 	public SimuController() {
 	}
 
 	/*public Palvelupiste[] getPp(){
+=======
+
+	/*public Palvelupiste[] getPp(){
+		return omaMoottori.getPalvelupisteet();
+>>>>>>> 17a0606 ui juttui
 	}*/
 
 	public void setMaarat(int kesto, int lentojenMaara, int turvaMaara, int passiMaara) {
@@ -50,6 +65,7 @@ public class SimuController implements ISimuController, IControllerMtoV {
 		tulokset.setPassitarkastuksienMaara(passiMaara);
 	}
 
+<<<<<<< Upstream, based on origin/main
 	@Override
 	public void naytaLoppuaika(double aika) {
 		// TODO Auto-generated method stub
@@ -109,6 +125,27 @@ public class SimuController implements ISimuController, IControllerMtoV {
 
 	
 	
+=======
+	public void piirraTurva() {
+		
+		x = x + 30;
+		gc.drawImage(image, x, y, 30, 30);
+	}
+
+	public void piirra() {
+		
+		gc.drawImage(image, 10, 10, 10, 10);
+		gc.setFill(Color.RED);
+		gc.fillOval(10,10,10,10);
+
+	}
+
+	public String test() {
+		return "testi";
+
+	}
+
+>>>>>>> 17a0606 ui juttui
 	/*public void setPpData() {
 		for(int i = 0; i < getPp().length; i++) {
 			ppData.add(getPp()[i]);
