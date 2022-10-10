@@ -17,3 +17,27 @@ public class Simulaattori implements Runnable { //Tekstipohjainen
 	}
 
 }
+
+
+@Override
+public void run() {
+	// TODO Auto-generated method stub
+	
+	Trace.setTraceLevel(Level.INFO);
+	
+	Moottori m = new OmaMoottori();
+	DAO d = new DAO();
+	
+	Tulokset.getInstance().setSimuloinnin_kokonaisaika(24000);
+	Tulokset.getInstance().setFlightNum(10);
+	Tulokset.getInstance().setnumOfCustomers(200);
+	
+	m.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());
+	m.aja();
+	
+
+	
+	d.tallennaTiedot();
+	
+}
+}
