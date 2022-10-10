@@ -1,5 +1,6 @@
 package simu.model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import eduni.distributions.Negexp;
@@ -27,6 +28,11 @@ public class OmaMoottori extends Moottori{
 	
 	double temp1 = 0;
 	double temp2 = 0;
+	double temp3 = 0;
+	
+	private int testt = 100000;
+	//ArrayList<String> cars = new ArrayList<String>();
+	ArrayList<int[]> arr = new ArrayList<int[]>();
 	
 	public OmaMoottori(){
 		
@@ -42,20 +48,21 @@ public class OmaMoottori extends Moottori{
 		
 		
 		//
-		palvelupisteet[1]=new Palvelupiste(new Normal(7, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInEU, 2);
+		palvelupisteet[1]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInEU, 2);
 		
 		//
-		palvelupisteet[2]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu, 3);
+		palvelupisteet[2]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiInMuu, 3);
 		
 		//
-		palvelupisteet[3]=new Palvelupiste(new Normal(22, 1), tapahtumalista, TapahtumanTyyppi.passiIn, 4);
+		palvelupisteet[3]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.passiIn, 4);
 		
 		//
-		palvelupisteet[4]=new Palvelupiste(new Normal(3, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut, 5);
+		palvelupisteet[4]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut, 5);
 		
-		palvelupisteet[5]=new Palvelupiste(new Normal(5, 10), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut_eiEU, 6);
+		palvelupisteet[5]=new Palvelupiste(new Normal(3, 1), tapahtumalista, TapahtumanTyyppi.lahtoporttiOut_eiEU, 6);
+		
 		// Asiakkaita saapuu ~2min välein
-		saapumisprosessi = new Saapumisprosessi(new Normal(2, 1), tapahtumalista, TapahtumanTyyppi.luoLennot);
+		saapumisprosessi = new Saapumisprosessi(new Normal(1, 1), tapahtumalista, TapahtumanTyyppi.luoLennot);
 
 	}
 
@@ -68,28 +75,30 @@ public class OmaMoottori extends Moottori{
 	
 	@Override
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
-
 		Asiakas a;
+		
+		//Jonon pituus eri tunneilla
+		if (Kello.getInstance().getAika() > 1000 && Kello.getInstance().getAika() < 2000) {
+			temp2 = palvelupisteet[0].jononPituus() + palvelupisteet[3].jononPituus();
+		} else if (Kello.getInstance().getAika() > 2000 && Kello.getInstance().getAika() < 3000) {
+			temp1 = palvelupisteet[0].jononPituus() + palvelupisteet[3].jononPituus();
+		}
+		
+		
 		switch (t.getTyyppi()) {
 		
 			
 		case luoLennot:
-			//
-			int test = 1;
-			/*
-			if (test == 1) {
+		
+			if (testt > 0) {
 				palvelupisteet[0].lisaaJonoon(new Asiakas());
-				test++;
-			} else if (test == 2) {
-				palvelupisteet[5].lisaaJonoon(new Asiakas());
-				test--;
+				saapumisprosessi.generoiSeuraava();	
+				palvelupisteet[0].setAloitusAika(Kello.getInstance().getAika());
+				testt--;
 			}
-			*/
+			//saapumisprosessi.generoiSeuraava();	
 			
-			palvelupisteet[0].lisaaJonoon(new Asiakas());
-			palvelupisteet[0].setAloitusAika(Kello.getInstance().getAika());
 			
-			saapumisprosessi.generoiSeuraava();	
 			break;
 			
 		case turvaIn:
@@ -107,16 +116,18 @@ public class OmaMoottori extends Moottori{
 			
 			a = palvelupisteet[0].otaJonosta();
 			
+			palvelupisteet[0].lisaaPalveltuAsiakas();
+			palvelupisteet[0].setLoppuAika(Kello.getInstance().getAika());
+			
+			palvelupisteet[0].lisaaPalveluAikaa(palvelupisteet[0].getLoppuAika() - palvelupisteet[0].getAloitusAika());
 			if (a.isOnkoEU() == true) {
 				palvelupisteet[1].lisaaJonoon(a);
-				palvelupisteet[0].lisaaPalveltuAsiakas();
-				palvelupisteet[0].setLoppuAika(Kello.getInstance().getAika());
-				palvelupisteet[0].lisaaPalveluAikaa(palvelupisteet[0].getLoppuAika() - palvelupisteet[0].getAloitusAika());
-				
+
 			} else if (a.isOnkoEU() == false) {
-				palvelupisteet[0].lisaaPalveltuAsiakas();
 				palvelupisteet[2].lisaaJonoon(a);
+
 			}
+			
 			
 			break;
 			
@@ -129,14 +140,20 @@ public class OmaMoottori extends Moottori{
 		case lahtoporttiInMuu:
 			a = palvelupisteet[2].otaJonosta();
 			palvelupisteet[3].lisaaJonoon(a);
+			palvelupisteet[3].setAloitusAika(Kello.getInstance().getAika());
 			
 			break;
 			
 		case passiIn:
 			a = palvelupisteet[3].otaJonosta();
+			
+			palvelupisteet[3].lisaaPalveltuAsiakas();
+			palvelupisteet[3].setLoppuAika(Kello.getInstance().getAika());
+			palvelupisteet[3].lisaaPalveluAikaa(palvelupisteet[3].getLoppuAika() - palvelupisteet[3].getAloitusAika());
+			
 			palvelupisteet[5].lisaaJonoon(a);
 
-			palvelupisteet[5].setAloitusAika(Kello.getInstance().getAika());
+			
 			
 		
 			break;
@@ -148,6 +165,7 @@ public class OmaMoottori extends Moottori{
 			eu_asiakkaat++;
 			palvellut++;
 			a.raportti();
+			break;
 
 		case lahtoporttiOut_eiEU:
 			a = palvelupisteet[5].otaJonosta();
@@ -155,14 +173,12 @@ public class OmaMoottori extends Moottori{
 			if (a == null) {
 				break;
 			} else {
-				palvelupisteet[5].lisaaPalveltuAsiakas();
-				palvelupisteet[5].setLoppuAika(Kello.getInstance().getAika());
-				palvelupisteet[5].lisaaPalveluAikaa(palvelupisteet[5].getLoppuAika() - palvelupisteet[5].getAloitusAika());
 				a.setPoistumisaika(Kello.getInstance().getAika());
 				ei_eu_asiakkaat++;
 				palvellut++;
 				a.raportti();
 			}
+			break;
 	
 		case checkinIn:
 			break;
@@ -183,30 +199,35 @@ public class OmaMoottori extends Moottori{
 		return palvelupisteet;
 	}
 	
+	
+	
 	@Override
 	protected void tulokset() {	
-		//System.out.println("\n\n" + "Simulointi päättyi kello " + Kello.getInstance().getAika());
-		//System.out.println("Palveltuja asiakkaita yhteensä: " + palvellut);
-		//System.out.println("Palveltuja EU asiakkaita: " + eu_asiakkaat + " ja palveltuja ei EU asiakkaita: " + ei_eu_asiakkaat);
+		System.out.println("\n\n" + "Simulointi päättyi kello " + Kello.getInstance().getAika());
+		System.out.println("Palveltuja asiakkaita yhteensä: " + palvellut);
+		System.out.println("Palveltuja EU asiakkaita: " + eu_asiakkaat + " ja palveltuja ei EU asiakkaita: " + ei_eu_asiakkaat);
 		
 		System.out.println("Turvatarkastuksen palvellut asiakkaat: " + palvelupisteet[0].getPalvellut_asiakkaat() + " ja niiden palvelemiseen käytetty aika: " + palvelupisteet[0].getPalveluaika());
 		System.out.println("Turvatarkastuksen keskimääräinen palveluaika: " + (palvelupisteet[0].getKeskimaarainen_palveluaika()));
-		//System.out.println(palvelupisteet[0].jononPituus());
+		System.out.println(palvelupisteet[0].jononPituus());
 		//palvelupisteet[0].getKeskimaarainen_palveluaika();
 		System.out.println("Jos haluat ehtiä turvatarkastuksesta tule: " + (palvelupisteet[0].ehtiAika()) + " minuuttia etuajassa kentälle!");
 		
 		
 		
 		
-		System.out.println("Passitarkastuksen palvellut asiakkaat: " + palvelupisteet[5].getPalvellut_asiakkaat() + " ja niiden palvelemiseen käytetty aika: " + palvelupisteet[5].getPalveluaika());
-		System.out.println("Passitarkastuksen keskimääräinen palveluaika: " + (palvelupisteet[5].getKeskimaarainen_palveluaika()));
-		//System.out.println(palvelupisteet[5].jononPituus());
+		System.out.println("Passitarkastuksen palvellut asiakkaat: " + palvelupisteet[3].getPalvellut_asiakkaat() + " ja niiden palvelemiseen käytetty aika: " + palvelupisteet[3].getPalveluaika());
+		System.out.println("Passitarkastuksen keskimääräinen palveluaika: " + (palvelupisteet[3].getKeskimaarainen_palveluaika()));
+		System.out.println(palvelupisteet[3].jononPituus());
 		//palvelupisteet[5].getKeskimaarainen_palveluaika();
-		System.out.println("Jos haluat ehtiä passitarkastuken tule: " + (palvelupisteet[5].ehtiAika()) + " minuuttia etuajassa kentälle!");
+		System.out.println("Jos haluat ehtiä passitarkastuken tule: " + (palvelupisteet[3].ehtiAika()) + " minuuttia etuajassa kentälle!");
 	
 		Tulokset.getInstance().setPalvellut_asiakkaat(palvellut);
 		Tulokset.getInstance().setSimuloinnin_kokonaisaika(Kello.getInstance().getAika());
 		//System.out.println("Tulokset ... puuttuvat vielä");
+		
+		System.out.println(temp2);
+		System.out.println(temp1);
 		
 	}
 
