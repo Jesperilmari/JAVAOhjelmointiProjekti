@@ -21,6 +21,12 @@ public class Simulaattori implements Runnable { //Tekstipohjainen
 		//comment here
 	}
 
+
+
+
+
+
+
 @Override
 public void run() {
 	// TODO Auto-generated method stub
