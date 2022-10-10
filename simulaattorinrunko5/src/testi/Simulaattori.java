@@ -16,34 +16,4 @@ public class Simulaattori implements Runnable { //Tekstipohjainen
 		//comment here
 	}
 
-<<<<<<< HEAD
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		Trace.setTraceLevel(Level.INFO);
-		Moottori m = new OmaMoottori();
-		m.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());
-		m.aja();
-
-	}
-=======
-@Override
-public void run() {
-	// TODO Auto-generated method stub
-	
-	Trace.setTraceLevel(Level.INFO);
-	Moottori m = new OmaMoottori();
-	DAO d = new DAO();
-	m.setSimulointiaika(24000);
-	m.aja();
-	
-	
-	Tulokset.getInstance().setSimuloinnin_kokonaisaika(2400);
-	Tulokset.getInstance().setFlightNum(10);
-	Tulokset.getInstance().setnumOfCustomers(200);
-	
-	d.tallennaTiedot();
-	
-}
->>>>>>> branch 'main' of https://github.com/Jesperilmari/JAVAOhjelmointiProjekti.git
 }
