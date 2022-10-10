@@ -1,5 +1,4 @@
 import java.util.Random;
-
 import eduni.distributions.*;
 
 public class edunitest {

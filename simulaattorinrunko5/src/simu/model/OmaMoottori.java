@@ -2,13 +2,9 @@ package simu.model;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-<<<<<<< Upstream, based on origin/main
 import controller.IControllerMtoV;
 import controller.ISimuController;
-=======
 import controller.SimuController;
->>>>>>> 17a0606 ui juttui
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
 import eduni.distributions.Uniform;
@@ -20,7 +16,6 @@ import controller.SimuController;
 
 //jaa lennot tasaisesti simuloinnin ajalle
 
-//
 public class OmaMoottori extends Moottori{
 	
 	private Saapumisprosessi saapumisprosessi;
@@ -41,10 +36,7 @@ public class OmaMoottori extends Moottori{
 	
 	public OmaMoottori(IControllerMtoV kontrolleri){
 		
-<<<<<<< Upstream, based on origin/main
 		super(kontrolleri);
-=======
->>>>>>> 17a0606 ui juttui
 		palvelupisteet = new Palvelupiste[6];
 		
 		//for(int i = 0; i < palvelupisteet.length; i++) {
@@ -161,12 +153,7 @@ public class OmaMoottori extends Moottori{
 			palvelupisteet[3].lisaaPalveluAikaa(palvelupisteet[3].getLoppuAika() - palvelupisteet[3].getAloitusAika());
 			
 			palvelupisteet[5].lisaaJonoon(a);
-
-<<<<<<< Upstream, based on origin/main
-=======
 			
-		
->>>>>>> 17a0606 ui juttui
 			break;
 			
 		case lahtoporttiOut:
@@ -248,6 +235,13 @@ public class OmaMoottori extends Moottori{
 	public long getDelay() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public Palvelupiste[] getPalvelupisteet() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

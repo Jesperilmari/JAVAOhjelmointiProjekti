@@ -88,7 +88,7 @@ public class SimuController implements ISimuController, IControllerMtoV {
 		// TODO Auto-generated method stub
 	}
 
-	public void piirraTurva() {
+	public void piirraTurva1() {
 		
 		x = x + 30;
 		gc.drawImage(image, x, y, 30, 30);
