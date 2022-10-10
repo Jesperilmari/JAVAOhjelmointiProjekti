@@ -15,7 +15,7 @@ public class Tulokset {
 	
 	private double simulationTime;
 	private int flightNum;
-	private int numOfCustomers ;
+	private int numOfCustomers;
 	private int totalNumOfCusterms = 300;
 	
 	
@@ -33,6 +33,9 @@ public class Tulokset {
 	}
 	
 	
+	public void setnumOfCustomers(int numOfCustomers) {
+		this.numOfCustomers = numOfCustomers;
+	}
 	
 	public int getNumOfCustomers() {
 		return numOfCustomers;
@@ -60,6 +63,9 @@ public class Tulokset {
 		return simuloinnin_kokonaisaika;
 	}
 
+	public int gettotalNumOfCusterms() {
+		return totalNumOfCusterms;
+	}
 
 
 	public void setSimuloinnin_kokonaisaika(double simuloinnin_kokonaisaika) {
