@@ -30,7 +30,7 @@ public class MainGUI extends Application{
 	int lentojenMaara;
 	int turvaMaara;
 	int passiMaara;
-	
+
 
 	/*@FXML
 	private ListView ppListView;*/
@@ -112,12 +112,7 @@ public class MainGUI extends Application{
 					passiMaara = Integer.parseInt(passiMaaraTF.getText());
 
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
-					
 					simuController.kaynnistaSimulointi();
-					
-
-
-					//testi.Simulaattori.main(null);
 
 				} catch (NumberFormatException e ) {
 					alert.setTitle("Error");
