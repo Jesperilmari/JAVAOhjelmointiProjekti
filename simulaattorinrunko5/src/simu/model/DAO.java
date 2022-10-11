@@ -1,6 +1,7 @@
 package simu.model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class DAO {
@@ -41,6 +42,28 @@ public class DAO {
 		return true;
 		
 	}
+	
+	public Tietokantatulokset haeTiedot(int id) {
+		
+		Tietokantatulokset tt = null;
+		ArrayList<Tietokantatulokset> tulokset = new ArrayList<>();
+		
+		try (PreparedStatement t = conn.prepareStatement("SELECT * FROM startData WHERE id = (?)")) {
+			t.setInt(1, id);
+			ResultSet r = t.executeQuery();
+			
+			while (r.next()) {
+				Tietokantatulokset tulos = new Tietokantatulokset(r.getInt(1), r.getInt(2), r.getInt(3), r.getInt(4), r.getInt(5), tulokset);
+				tulokset.add(tulos);
+				System.out.println(tulos.getFlight_capacity());
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return tt;
+	}
+	
 	
 	
 	

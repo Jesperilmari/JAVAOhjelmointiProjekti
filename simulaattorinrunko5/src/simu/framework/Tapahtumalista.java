@@ -12,20 +12,25 @@ public class Tapahtumalista {
 	}
 	
 	public Tapahtuma poista(){
-		Trace.out(Trace.Level.INFO,"Tapahtumalistasta poisto " + lista.peek().getTyyppi() + " " + lista.peek().getAika() );
+		//Trace.out(Trace.Level.INFO,"Tapahtumalistasta poisto " + lista.peek().getTyyppi() + " " + lista.peek().getAika() );
+		System.out.println("Tapahtumalistasta poisto " + lista.peek().getTyyppi() + " " + lista.peek().getAika());
 		return lista.remove();
 	}
 	
 	public void lisaa(Tapahtuma t){
 		
 		if(t.getTyyppi().toString() == "turvaIn") {
-			Trace.out(Trace.Level.INFO, "Asiakas siirtyi turvatarkastukseen");
+			//Trace.out(Trace.Level.INFO, "Asiakas siirtyi turvatarkastukseen");
+			System.out.println("Asiakas siirtyi turvatarkastukseen");
 		} else if(t.getTyyppi().toString() == "lahtoporttiIn") {
-			Trace.out(Trace.Level.INFO, "Asiakas siirtyi lähtöportti jonoon");
+			//Trace.out(Trace.Level.INFO, "Asiakas siirtyi lähtöportti jonoon");
+			System.out.println("Asiakas siirtyi lähtöportti jonoon");
 		} else if(t.getTyyppi().toString() == "lahtoporttiOut") {
-			Trace.out(Trace.Level.INFO, "Asiakas  siirtyi lentokoneeseen");
+			//Trace.out(Trace.Level.INFO, "Asiakas  siirtyi lentokoneeseen");
+			System.out.println("Asiakas  siirtyi lentokoneeseen");
 		}
 		//Trace.out(Trace.Level.INFO,"Tapahtumalistaan lisätään uusi " + t.getTyyppi() + " " + t.getAika());
+		System.out.println("Tapahtumalistaan lisätään uusi " + t.getTyyppi() + " " + t.getAika());
 		lista.add(t);
 	}
 	

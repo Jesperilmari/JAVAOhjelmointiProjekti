@@ -35,10 +35,10 @@ public void run() {
 	
 	//Moottori m = new OmaMoottori();
 	DAO d = new DAO();
-	kontrolleri = new SimuController();
+	//kontrolleri = new SimuController();
 	
-	kontrolleri.kaynnistaSimulointi();
-	
+	//kontrolleri.kaynnistaSimulointi();
+	//
 	
 	//Tulokset.getInstance().setSimuloinnin_kokonaisaika(100);
 	//Tulokset.getInstance().setFlightNum(10);
@@ -47,7 +47,9 @@ public void run() {
 	//m.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());
 	//m.aja();
 
-		d.tallennaTiedot();
+		//d.tallennaTiedot();
+		d.haeTiedot(2);
+		
 
 	}
 }

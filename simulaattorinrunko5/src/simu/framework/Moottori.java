@@ -9,7 +9,7 @@ public abstract class Moottori extends Thread implements IMoottori {
 	private double simulointiaika = 0;
 	
 	private Kello kello;
-	
+	private long viive = 0;
 	protected Tapahtumalista tapahtumalista;
 	protected Palvelupiste[] palvelupisteet;
 	
@@ -35,14 +35,17 @@ public abstract class Moottori extends Thread implements IMoottori {
 	public void run(){
 		alustukset(); // luodaan mm. ensimmäinen tapahtuma
 		while (simuloidaan()){
-			
-			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
+			viive();
+			//Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
+			System.out.println("\nA-vaihe: kello on " + nykyaika());
 			kello.setAika(nykyaika());
 			
-			Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
+			//Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
+			System.out.println("\nB-vaihe:");
 			suoritaBTapahtumat();
 			
-			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
+			//Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
+			System.out.println("\nC-vaihe:");
 			yritaCTapahtumat();
 
 		}
@@ -73,6 +76,15 @@ public abstract class Moottori extends Thread implements IMoottori {
 		return kello.getAika() < simulointiaika;
 	}
 	
+	private void viive() { // UUSI
+		//Trace.out(Trace.Level.INFO, "Viive " + viive);
+		System.out.println("Viive " + viive);
+		try {
+			sleep(0);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 			
 
 	protected abstract void alustukset(); // Määritellään simu.model-pakkauksessa Moottorin aliluokassa

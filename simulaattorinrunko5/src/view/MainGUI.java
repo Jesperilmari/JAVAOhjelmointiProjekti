@@ -117,7 +117,7 @@ public class MainGUI extends Application{
 					
 
 
-					testi.Simulaattori.main(null);
+					//testi.Simulaattori.main(null);
 
 				} catch (NumberFormatException e ) {
 					alert.setTitle("Error");

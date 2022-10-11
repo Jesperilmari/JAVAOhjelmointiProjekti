@@ -28,7 +28,8 @@ public class Asiakas {
 		
 		setOnkoEU(r.nextBoolean());
 		
-		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
+		//Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
+		System.out.println("Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
 	}
 
 	public double getPoistumisaika() {
@@ -53,13 +54,15 @@ public class Asiakas {
 	
 	
 	public void raportti(){
-		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");
-		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
-		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui: " +poistumisaika);
-		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi: " +(poistumisaika-saapumisaika));
+		//Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui:" +saapumisaika);
+		System.out.println("Asiakas "+id+ " saapui:" +saapumisaika);
+		//Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui:" +poistumisaika);
+		System.out.println("Asiakas "+id+ " poistui:" +poistumisaika);
+		//Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi:" +(poistumisaika-saapumisaika));
+		System.out.println("Asiakas "+id+ " viipyi:" + (poistumisaika-saapumisaika));
 		sum += (poistumisaika-saapumisaika);
 		double keskiarvo = sum/id;
-		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
+		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo "+ keskiarvo);
 	}
 
 	public boolean isOnkoEU() {
