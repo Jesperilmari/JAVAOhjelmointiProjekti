@@ -28,6 +28,8 @@
                   <TextField fx:id="lentojenMaaraTF" layoutX="6.0" layoutY="107.0" prefHeight="25.0" prefWidth="211.0" />
                   <TextField fx:id="turvaMaaraTF" layoutX="6.0" layoutY="149.0" prefHeight="25.0" prefWidth="211.0" />
                   <TextField fx:id="passiMaaraTF" layoutX="6.0" layoutY="191.0" prefHeight="25.0" prefWidth="211.0" />
+                  <Button fx:id="hidastaBtn" layoutX="6.0" layoutY="229.0" mnemonicParsing="false" text="Hidasta" />
+                  <Button fx:id="nopeutaBtn" layoutX="71.0" layoutY="229.0" mnemonicParsing="false" text="Nopeuta" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -35,7 +37,31 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <Canvas fx:id="mainCanvas" height="1000.0" layoutX="-8.0" layoutY="-2.0" width="770.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Canvas fx:id="turvaCanvas" height="200.0" layoutX="-8.0" layoutY="-2.0" width="770.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Canvas fx:id="passiCanvas" height="200.0" layoutX="-1.0" layoutY="200.0" width="770.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0" />
+                              <Canvas fx:id="euCanvas" height="200.0" layoutX="-1.0" layoutY="298.0" width="770.0" AnchorPane.bottomAnchor="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0" />
+                              <Canvas fx:id="muuCanvas" height="200.0" layoutY="600.0" width="770.0" AnchorPane.bottomAnchor="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="600.0" />
+                              <Canvas fx:id="lentoCanvas" height="200.0" layoutX="-1.0" layoutY="800.0" width="770.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="800.0" />
+                              <Label fx:id="turvaJonoText" alignment="CENTER_RIGHT" layoutX="562.0" layoutY="845.0" prefHeight="25.0" prefWidth="81.0" textFill="WHITE" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="562.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="845.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="passiJonoText" alignment="CENTER_RIGHT" layoutX="563.0" layoutY="883.0" prefHeight="25.0" prefWidth="81.0" textFill="WHITE" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="563.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="883.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="euJonoText" alignment="CENTER_RIGHT" layoutX="566.0" layoutY="914.0" prefHeight="25.0" prefWidth="81.0" textFill="WHITE" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="566.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="914.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="muuJonoText" alignment="CENTER_RIGHT" layoutX="560.0" layoutY="947.0" prefHeight="25.0" prefWidth="81.0" textFill="WHITE" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="560.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="950.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="24.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                     </items>

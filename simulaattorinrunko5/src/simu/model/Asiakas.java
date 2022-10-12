@@ -54,7 +54,6 @@ public class Asiakas {
 	
 	
 	public void raportti(){
-		//Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui:" +saapumisaika);
 		System.out.println("Asiakas "+id+ " saapui:" +saapumisaika);
 		//Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui:" +poistumisaika);
 		System.out.println("Asiakas "+id+ " poistui:" +poistumisaika);

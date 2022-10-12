@@ -99,6 +99,7 @@ public class OmaMoottori extends Moottori{
 		
 			System.out.println(Tulokset.getInstance().getNumOfCustomers());
 			if (Tulokset.getInstance().getNumOfCustomers() > testt) {
+				kontrolleri.piirraTurva(palvelupisteet[0].jononPituus());
 				palvelupisteet[0].lisaaJonoon(new Asiakas());
 				saapumisprosessi.generoiSeuraava();	
 				
@@ -117,16 +118,17 @@ public class OmaMoottori extends Moottori{
 			
 			
 			a = palvelupisteet[0].otaJonosta();
-			
+			kontrolleri.piirraTurva(palvelupisteet[0].jononPituus());
 			palvelupisteet[0].lisaaPalveltuAsiakas();
 			palvelupisteet[0].setLoppuAika(Kello.getInstance().getAika());
 			
 			palvelupisteet[0].lisaaPalveluAikaa(palvelupisteet[0].getLoppuAika() - palvelupisteet[0].getAloitusAika());
 			if (a.isOnkoEU() == true) {
 				palvelupisteet[1].lisaaJonoon(a);
-
+				kontrolleri.piirraEu(palvelupisteet[1].jononPituus());
 			} else if (a.isOnkoEU() == false) {
 				palvelupisteet[2].lisaaJonoon(a);
+				kontrolleri.piirraMuu(palvelupisteet[2].jononPituus());
 
 			}
 			
@@ -134,20 +136,23 @@ public class OmaMoottori extends Moottori{
 			
 		case lahtoporttiInEU:
 			a = palvelupisteet[1].otaJonosta();
+			kontrolleri.piirraEu(palvelupisteet[1].jononPituus());
 			palvelupisteet[4].lisaaJonoon(a);
 			
 			break;
 			
 		case lahtoporttiInMuu:
 			a = palvelupisteet[2].otaJonosta();
+			kontrolleri.piirraEu(palvelupisteet[1].jononPituus());
 			palvelupisteet[3].lisaaJonoon(a);
+			kontrolleri.piirraPassi(palvelupisteet[3].jononPituus());
 			palvelupisteet[3].setAloitusAika(Kello.getInstance().getAika());
 			
 			break;
 			
 		case passiIn:
 			a = palvelupisteet[3].otaJonosta();
-			
+			kontrolleri.piirraPassi(palvelupisteet[3].jononPituus());
 			palvelupisteet[3].lisaaPalveltuAsiakas();
 			palvelupisteet[3].setLoppuAika(Kello.getInstance().getAika());
 			palvelupisteet[3].lisaaPalveluAikaa(palvelupisteet[3].getLoppuAika() - palvelupisteet[3].getAloitusAika());

@@ -9,7 +9,7 @@ public abstract class Moottori extends Thread implements IMoottori {
 	private double simulointiaika = 0;
 	
 	private Kello kello;
-	private long viive = 0;
+	private long viive = 200;
 	protected Tapahtumalista tapahtumalista;
 	protected Palvelupiste[] palvelupisteet;
 	
@@ -80,12 +80,25 @@ public abstract class Moottori extends Thread implements IMoottori {
 		//Trace.out(Trace.Level.INFO, "Viive " + viive);
 		System.out.println("Viive " + viive);
 		try {
-			sleep(0);
+			sleep(viive);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-			
+	
+	
+	@Override
+	public void setDelay(long viive) {
+		// TODO Auto-generated method stub
+		this.viive = viive;	
+	}
+
+
+	@Override
+	public long getDelay() {
+		// TODO Auto-generated method stub
+		return viive;
+	}	
 
 	protected abstract void alustukset(); // Määritellään simu.model-pakkauksessa Moottorin aliluokassa
 	
