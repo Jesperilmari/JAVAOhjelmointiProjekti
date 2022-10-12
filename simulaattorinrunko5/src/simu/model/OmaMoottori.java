@@ -17,7 +17,6 @@ import simu.framework.Saapumisprosessi;
 import simu.framework.Tapahtuma;
 import controller.SimuController;
 
-//jaa lennot tasaisesti simuloinnin ajalle
 
 //
 
@@ -36,11 +35,9 @@ public class OmaMoottori extends Moottori{
 	double temp3 = 0;
 
 	private int testt = 100000;
-	//ArrayList<String> cars = new ArrayList<String>();
-	//ArrayList<int[]> arr = new ArrayList<int[]>();
+
 
 	public OmaMoottori(IControllerMtoV kontrolleri){
-
 		super(kontrolleri);
 
 			palvelupisteet = new Palvelupiste[6];

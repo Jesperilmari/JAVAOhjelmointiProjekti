@@ -37,12 +37,15 @@ public abstract class Moottori extends Thread implements IMoottori {
 		while (simuloidaan()){
 			viive();
 			//Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
+			System.out.println("\nA-vaihe: kello on " + nykyaika());
 			kello.setAika(nykyaika());
 			
 			//Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
+			System.out.println("\nB-vaihe:");
 			suoritaBTapahtumat();
 			
 			//Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
+			System.out.println("\nC-vaihe:");
 			yritaCTapahtumat();
 
 		}

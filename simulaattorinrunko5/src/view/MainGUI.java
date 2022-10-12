@@ -31,6 +31,10 @@ public class MainGUI extends Application{
 	int lentojenMaara;
 	int turvaMaara;
 	int passiMaara;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/main
 
 	/*@FXML
 	private ListView ppListView;*/
@@ -161,7 +165,10 @@ public class MainGUI extends Application{
 					passiMaara = Integer.parseInt(passiMaaraTF.getText());
 
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
+<<<<<<< HEAD
 					
+=======
+>>>>>>> refs/remotes/origin/main
 					simuController.kaynnistaSimulointi();
 
 				} catch (NumberFormatException e ) {
@@ -200,7 +207,12 @@ public class MainGUI extends Application{
 		//hidastaBtn.setOnAction(e -> simuController.hidasta());
         //nopeutaBtn.setOnAction(e -> simuController.nopeuta());
 	}
+<<<<<<< HEAD
 	
+=======
+
+
+>>>>>>> refs/remotes/origin/main
 	public static void main(String[] args) {
 		launch(args);
 	}
