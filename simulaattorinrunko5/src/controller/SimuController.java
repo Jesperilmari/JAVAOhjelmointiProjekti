@@ -4,68 +4,91 @@ import view.MainGUI;
 import javax.swing.text.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-<<<<<<< Upstream, based on origin/main
 import simu.framework.IMoottori;
-=======
->>>>>>> 17a0606 ui juttui
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import simu.model.OmaMoottori;
 import simu.model.Palvelupiste;
 import simu.model.Tulokset;
 import testi.Simulaattori;
 
-<<<<<<< Upstream, based on origin/main
-public class SimuController implements ISimuController, IControllerMtoV {
+public class SimuController extends Canvas implements ISimuController, IControllerMtoV {
 	
 	//OmaMoottori omaMoottori = new OmaMoottori();
 	
 	private IMoottori moottori;
-	
-=======
-public class SimuController extends Canvas {
 
-	OmaMoottori omaMoottori = new OmaMoottori();
->>>>>>> 17a0606 ui juttui
 	Tulokset tulokset = Tulokset.getInstance();
 	MainGUI view;
-	GraphicsContext gc;
-	int x = 15;
-	int y = 20;
-
-	String passengerImgSrc = "\\view\\Images\\passengerImg.png";
-
-	Image image = new Image(passengerImgSrc);
-
-	//private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
-
-	public SimuController(MainGUI mainGUI, GraphicsContext gc){
-		this.view = mainGUI;
-		this.gc = gc;
-	}
-<<<<<<< Upstream, based on origin/main
 	
-	public SimuController() {
+	private GraphicsContext turvaGc;
+	private GraphicsContext passiGc;
+	private GraphicsContext euGc;
+	private GraphicsContext muuGc;
+	private GraphicsContext jonoGc;
+	
+	private Label turvaJonoText;
+	private Label passiJonoText;
+	private Label euJonoText;
+	private Label muuJonoText;
+	
+	int turvaX = 33;
+	int turvaY = 94;
+	int passiX;
+	int passiY;
+	int euX;
+	int euY;
+	int muuX;
+	int muuY;
+
+	String passengerImgSrc = "\\view\\Images\\passengerFinal.png";
+	String passengerBwImgSrc = "\\view\\Images\\passengerFinalBackwards.png";
+	String lentoBgSrc = "\\view\\Images\\skyBackground.png";
+	String turvaBgSrc = "\\view\\Images\\SecurityBG.png";
+	String passportBgSrc = "\\view\\Images\\passportBG.png";
+	String euBgSrc = "\\view\\Images\\euDepartureBG.png";
+	String worldwideBgSrc = "\\view\\Images\\WorldwideBG.png";
+	String textBgSrc = "\\view\\Images\\textBg.png";
+	
+	Image passengerImg = new Image(passengerImgSrc);
+	Image passengerBackwardsImg = new Image(passengerBwImgSrc);
+	Image lentoBgImg = new Image(lentoBgSrc);
+	Image turvaBgImg = new Image(turvaBgSrc);
+	Image passportBgImg = new Image(passportBgSrc);
+	Image euBgImg = new Image(euBgSrc);
+	Image muuBgImg = new Image(worldwideBgSrc);
+	Image textBg = new Image(textBgSrc);
+	
+	//private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
+	
+	public SimuController(MainGUI mainGUI, GraphicsContext turvaGc, GraphicsContext passiGc, GraphicsContext euGc, GraphicsContext muuGc, GraphicsContext lentoGc, Label turvaJonoText, Label passiJonoText, Label euJonoText, Label muuJonoText) {
+		this.view = mainGUI;
+		this.turvaGc = turvaGc;
+		this.passiGc = passiGc;
+		this.euGc = euGc;
+		this.muuGc = muuGc;
+		this.jonoGc = lentoGc;
+		this.turvaJonoText = turvaJonoText;
+		this.passiJonoText = passiJonoText;
+		this.euJonoText = euJonoText;
+		this.muuJonoText = euJonoText;
+		
+		jonoGc.setFont(Font.font("Arial" , FontWeight.BOLD ,24));
+		jonoGc.setFill(Color.WHITE);
 	}
-
-	/*public Palvelupiste[] getPp(){
-=======
-
-	/*public Palvelupiste[] getPp(){
-		return omaMoottori.getPalvelupisteet();
->>>>>>> 17a0606 ui juttui
-	}*/
 
 	public void setMaarat(int kesto, int lentojenMaara, int turvaMaara, int passiMaara) {
-		tulokset.setSimuloinnin_kokonaisaika(kesto * 1440);
+		tulokset.setSimuloinnin_kokonaisaika(1440);
 		tulokset.setFlightNum(lentojenMaara);
 		tulokset.setTurvatarkastuksienMaara(turvaMaara);
 		tulokset.setPassitarkastuksienMaara(passiMaara);
 	}
-
-<<<<<<< Upstream, based on origin/main
+	
 	@Override
 	public void naytaLoppuaika(double aika) {
 		// TODO Auto-generated method stub
@@ -80,7 +103,7 @@ public class SimuController extends Canvas {
 	@Override
 	public void kaynnistaSimulointi() {
 		moottori = new OmaMoottori(this);
-		moottori.setSimulointiaika(24000);    
+		moottori.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());    
 		//moottori.setDelay(100);             
 		//ui.getVisualisointi().tyhjennaNaytto();	
 
@@ -91,61 +114,84 @@ public class SimuController extends Canvas {
 	@Override
 	public void nopeuta() {
 		// TODO Auto-generated method stub
-		
+		moottori.setDelay((long)(moottori.getDelay()*0.9));
 	}
 
 	@Override
 	public void hidasta() {
 		// TODO Auto-generated method stub
+		moottori.setDelay((long)(moottori.getDelay()*1.1));
 	}
 
 	@Override
-	public void piirraTurva() {
+	public void piirraTurva(int jononPituus) {
+		turvaGc.clearRect(0, 0, 770, 200);
+		turvaGc.drawImage(turvaBgImg, 0, 0, 770, 200);
+		turvaX = 33;
+		turvaY = 94;
+		jonoGc.setFont(new Font("Arial", 24));
+		jonoGc.drawImage(textBg, 500, 55);
+		jonoGc.fillText(String.valueOf(jononPituus), 550, 75);
+		for (int i = 0; i < jononPituus; i++) {
+			turvaGc.drawImage(passengerImg, turvaX, turvaY, 32, 64);
+			turvaX += 16; 
+		}
+	}
+
+	@Override
+	public void piirraPassi(int jononPituus) {
+		// TODO Auto-generated method stub
+		passiX = 33;
+		passiY = 94;
+		passiGc.clearRect(0, 0, 770, 200);
+		jonoGc.drawImage(textBg, 500, 90);
+		jonoGc.fillText(String.valueOf(jononPituus), 550, 110);
+		//passiJonoText.setText(String.valueOf(jononPituus));
+		passiGc.drawImage(passportBgImg, 0, 0, 770, 200);
+		for (int i = 0; i < jononPituus; i++) {
+			passiGc.drawImage(passengerImg, passiX, passiY, 32, 64);
+			passiX += 16; 
+		}
+	}
+
+	@Override
+	public void piirraEu(int jononPituus) {
+		euGc.clearRect(0, 0, 770, 200);
+		euGc.drawImage(euBgImg, 0, 0, 770, 200);
+		jonoGc.drawImage(textBg, 500, 120);
+		jonoGc.fillText(String.valueOf(jononPituus), 550, 140);
+		//euJonoText.setText(String.valueOf(jononPituus));
+		euX = 33;
+		euY = 94;
+		for (int i = 0; i < jononPituus; i++) {
+			euGc.drawImage(passengerImg, euX, euY, 32, 64);
+			euX += 16; 
+		}
+		
+	}
+
+	@Override
+	public void piirraMuu(int jononPituus) {
+		muuGc.clearRect(0, 0, 770, 200);
+		muuGc.drawImage(muuBgImg, 0, 0, 770, 200);
+		muuX = 33;
+		muuY = 94;
+		jonoGc.drawImage(textBg, 500, 150);
+		jonoGc.fillText(String.valueOf(jononPituus), 550, 170);
+		//muuJonoText.setText(String.valueOf(jononPituus));
+		for (int i = 0; i < jononPituus; i++) {
+			muuGc.drawImage(passengerImg, muuX, muuY, 32, 64);
+			muuX += 16; 
+		}
+		
+	}
+
+	@Override
+	public void piirraPituus() {
+		
 		// TODO Auto-generated method stub
 	}
 
-	public void piirraTurva1() {
-		
-		x = x + 30;
-		gc.drawImage(image, x, y, 30, 30);
-	}
-
-	public void piirra() {
-		
-		gc.drawImage(image, 10, 10, 10, 10);
-		gc.setFill(Color.RED);
-		gc.fillOval(10,10,10,10);
-
-	}
-
-	public String test() {
-		return "testi";
-
-	}
-
-	
-	
-=======
-	public void piirraTurva() {
-		
-		x = x + 30;
-		gc.drawImage(image, x, y, 30, 30);
-	}
-
-	public void piirra() {
-		
-		gc.drawImage(image, 10, 10, 10, 10);
-		gc.setFill(Color.RED);
-		gc.fillOval(10,10,10,10);
-
-	}
-
-	public String test() {
-		return "testi";
-
-	}
-
->>>>>>> 17a0606 ui juttui
 	/*public void setPpData() {
 		for(int i = 0; i < getPp().length; i++) {
 			ppData.add(getPp()[i]);

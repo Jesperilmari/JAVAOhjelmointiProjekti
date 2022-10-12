@@ -16,6 +16,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -30,15 +31,15 @@ public class MainGUI extends Application{
 	int lentojenMaara;
 	int turvaMaara;
 	int passiMaara;
-<<<<<<< Upstream, based on origin/main
-	
-=======
->>>>>>> 17a0606 ui juttui
 
 	/*@FXML
 	private ListView ppListView;*/
 	@FXML
 	private Button startBtn;
+	@FXML
+	private Button hidastaBtn;
+	@FXML
+	private Button nopeutaBtn;
 	@FXML
 	private TextField kestoTF;
 	@FXML
@@ -48,9 +49,44 @@ public class MainGUI extends Application{
 	@FXML
 	private TextField passiMaaraTF;
 	@FXML
-	private Canvas mainCanvas;
+	private Canvas turvaCanvas;
+	private Canvas passiCanvas;
+	private Canvas euCanvas;
+	private Canvas muuCanvas;
+	private Canvas lentoCanvas;
 	
-	private GraphicsContext gc;
+	private GraphicsContext turvaGc;
+	private GraphicsContext passiGc;
+	private GraphicsContext euGc;
+	private GraphicsContext muuGc;
+	private GraphicsContext lentoGc;
+	
+	@FXML
+	private Label turvaJonoText;
+	@FXML
+	private Label passiJonoText;
+	@FXML
+	private Label euJonoText;
+	@FXML
+	private Label muuJonoText;
+	
+	String passengerImgSrc = "\\view\\Images\\passengerFinal.png";
+	String passengerBwImgSrc = "\\view\\Images\\passengerFinalBackwards.png";
+	String lentoBgSrc = "\\view\\Images\\skyBackground.png";
+	String turvaBgSrc = "\\view\\Images\\SecurityBG.png";
+	String passportBgSrc = "\\view\\Images\\passportBG.png";
+	String euBgSrc = "\\view\\Images\\euDepartureBG.png";
+	String worldwideBgSrc = "\\view\\Images\\WorldwideBG.png";
+	String jonoBgSrc = "\\view\\Images\\JononPituus.png";
+	
+	Image passengerImg = new Image(passengerImgSrc);
+	Image passengerBackwardsImg = new Image(passengerBwImgSrc);
+	Image lentoBgImg = new Image(lentoBgSrc);
+	Image turvaBgImg = new Image(turvaBgSrc);
+	Image passportBgImg = new Image(passportBgSrc);
+	Image euBgImg = new Image(euBgSrc);
+	Image worldwideBgImg = new Image(worldwideBgSrc);
+	Image jono = new Image(jonoBgSrc);
 	
 	//private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
 	//ArrayList<Palvelupiste> pp = new ArrayList<Palvelupiste>();
@@ -76,33 +112,43 @@ public class MainGUI extends Application{
 		Alert alert = new Alert(AlertType.WARNING);
 
 		startBtn = (Button) scene.lookup("#startBtn");
+		hidastaBtn = (Button) scene.lookup("#hidastaBtn");
+		nopeutaBtn = (Button) scene.lookup("#nopeutaBtn");
 
 		kestoTF = (TextField) scene.lookup("#kestoTF");
-
 		lentojenMaaraTF = (TextField) scene.lookup("#lentojenMaaraTF");
-
 		turvaMaaraTF = (TextField) scene.lookup("#turvaMaaraTF");
-
 		passiMaaraTF = (TextField) scene.lookup("#passiMaaraTF");
 		
-		mainCanvas = (Canvas) scene.lookup("#mainCanvas");
-
-		gc = mainCanvas.getGraphicsContext2D();
+		turvaCanvas = (Canvas) scene.lookup("#turvaCanvas");
+		passiCanvas = (Canvas) scene.lookup("#passiCanvas");
+		euCanvas = (Canvas) scene.lookup("#euCanvas");
+		muuCanvas = (Canvas) scene.lookup("#muuCanvas");
+		lentoCanvas = (Canvas) scene.lookup("#lentoCanvas");
 		
-		SimuController simuController = new SimuController(this, gc);
+		turvaJonoText = (Label) scene.lookup("#turvaJonoText");
+		passiJonoText = (Label) scene.lookup("#passiJonoText");
+		euJonoText = (Label) scene.lookup("#euJonoText");
+		muuJonoText = (Label) scene.lookup("#muuJonoText");
 		
-		String turvaTarkastusImgSrc = "\\view\\Images\\Turva.png";
+		turvaJonoText.setText("");
+		passiJonoText.setText("");
+		euJonoText.setText("");
+		muuJonoText.setText("");
 		
-		Image turvaTarkastusImg = new Image(turvaTarkastusImgSrc);
+		turvaGc = turvaCanvas.getGraphicsContext2D();
+		passiGc = passiCanvas.getGraphicsContext2D();
+		euGc = euCanvas.getGraphicsContext2D();
+		muuGc = muuCanvas.getGraphicsContext2D();
+		lentoGc = lentoCanvas.getGraphicsContext2D();
 		
-		gc.drawImage(turvaTarkastusImg, 10, 10, 40, 40);
+		turvaGc.drawImage(turvaBgImg, 0, 0, 770, 200);
+		lentoGc.drawImage(jono, 0, 0, 770, 200);
+		passiGc.drawImage(passportBgImg, 0, 0, 770, 200);
+		euGc.drawImage(euBgImg, 0, 0, 770, 200);
+		muuGc.drawImage(worldwideBgImg, 0, 0, 770, 200);
 		
-		try {
-			simuController.piirraTurva();
-			simuController.piirraTurva();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		SimuController simuController = new SimuController(this, turvaGc, passiGc, euGc, muuGc, lentoGc, turvaJonoText, passiJonoText, euJonoText, muuJonoText);
 	
 		
 		startBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -116,17 +162,7 @@ public class MainGUI extends Application{
 
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
 					
-<<<<<<< Upstream, based on origin/main
 					simuController.kaynnistaSimulointi();
-=======
->>>>>>> 17a0606 ui juttui
-					
-
-<<<<<<< Upstream, based on origin/main
-
-=======
->>>>>>> 17a0606 ui juttui
-					testi.Simulaattori.main(null);
 
 				} catch (NumberFormatException e ) {
 					alert.setTitle("Error");
@@ -137,12 +173,34 @@ public class MainGUI extends Application{
 				}
 			}
 		});
+		
+		hidastaBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					simuController.hidasta();
+				} catch (NumberFormatException e ) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		nopeutaBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					simuController.nopeuta();
+				} catch (NumberFormatException e ) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
+		//hidastaBtn.setOnAction(e -> simuController.hidasta());
+        //nopeutaBtn.setOnAction(e -> simuController.nopeuta());
 	}
-
-<<<<<<< Upstream, based on origin/main
-
-=======
->>>>>>> 17a0606 ui juttui
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
