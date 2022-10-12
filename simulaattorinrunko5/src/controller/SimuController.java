@@ -28,7 +28,7 @@ public class SimuController implements ISimuController, IControllerMtoV {
 
 	String passengerImgSrc = "\\view\\Images\\passengerImg.png";
 
-	Image image = new Image(passengerImgSrc);
+	//Image image = new Image(passengerImgSrc);
 
 	//private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
 
@@ -44,7 +44,7 @@ public class SimuController implements ISimuController, IControllerMtoV {
 	}*/
 
 	public void setMaarat(int kesto, int lentojenMaara, int turvaMaara, int passiMaara) {
-		tulokset.setSimuloinnin_kokonaisaika(kesto * 1440);
+		tulokset.setSimuloinnin_kokonaisaika(24000);
 		tulokset.setFlightNum(lentojenMaara);
 		tulokset.setTurvatarkastuksienMaara(turvaMaara);
 		tulokset.setPassitarkastuksienMaara(passiMaara);
@@ -64,8 +64,9 @@ public class SimuController implements ISimuController, IControllerMtoV {
 	@Override
 	public void kaynnistaSimulointi() {
 		moottori = new OmaMoottori(this);
-		moottori.setSimulointiaika(24000);    
-		//moottori.setDelay(100);             
+		setMaarat(7, 1, 10, 1);
+		moottori.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());    
+		moottori.setDelay(100);             
 		//ui.getVisualisointi().tyhjennaNaytto();	
 
 		((Thread)moottori).start();
@@ -87,7 +88,7 @@ public class SimuController implements ISimuController, IControllerMtoV {
 	public void piirraTurva() {
 		// TODO Auto-generated method stub
 	}
-
+/*
 	public void piirraTurva1() {
 		
 		x = x + 30;
@@ -101,7 +102,7 @@ public class SimuController implements ISimuController, IControllerMtoV {
 		gc.fillOval(10,10,10,10);
 
 	}
-
+*/
 	public String test() {
 		return "testi";
 

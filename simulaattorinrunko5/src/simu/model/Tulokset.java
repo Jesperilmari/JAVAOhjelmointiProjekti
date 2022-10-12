@@ -1,5 +1,6 @@
 package simu.model;
 
+import java.util.ArrayList;
 
 //Singleton tuloksille!
 public class Tulokset {
@@ -16,7 +17,11 @@ public class Tulokset {
 	private double simulationTime;
 	private int flightNum;
 	private int numOfCustomers;
-	private int totalNumOfCusterms = 300;
+	private int totalNumOfCusterms = 1000;
+	
+	ArrayList<Double> saapumiset = new ArrayList<Double>();
+	ArrayList<Double> saapumiset_eiEU = new ArrayList<Double>();
+	
 	
 	
 	private Tulokset() {
@@ -122,5 +127,20 @@ public class Tulokset {
 	
 	public int getPassitarkastuksienMaara() {
 		return passiTarkastustenMaara;
+	}
+	
+	public void lisaaSaapumisAika(double aika) {
+		saapumiset.add(aika);
+	}
+	
+	public void lisaaEiEUAika(double aika) {
+		saapumiset_eiEU.add(aika);
+	}
+	
+	public void printSaapumisAjat() {
+		for (int i = 0; i < saapumiset.size(); i++) {
+			System.out.println("EU Lennot: Jos saavut kentälle klo: " + i + ", niin tule näin monta minuuttia etuajassa: " + saapumiset.get(i));
+			System.out.println("Ei-EU Lennot: Jos saavut kentälle klo: " + i + ", niin tule näin monta minuuttia etuajassa: " + (saapumiset.get(i) + (saapumiset_eiEU.get(i) / Tulokset.getInstance().getPassitarkastuksienMaara())));
+		}
 	}
 }

@@ -33,11 +33,10 @@ public void run() {
 	
 	Trace.setTraceLevel(Level.INFO);
 	
-	//Moottori m = new OmaMoottori();
 	DAO d = new DAO();
-	//kontrolleri = new SimuController();
+	kontrolleri = new SimuController();
 	
-	//kontrolleri.kaynnistaSimulointi();
+	kontrolleri.kaynnistaSimulointi();
 	//
 	
 	//Tulokset.getInstance().setSimuloinnin_kokonaisaika(100);
@@ -49,7 +48,7 @@ public void run() {
 
 
 	//d.tallennaTiedot();
-	d.haeTiedot(2);
+	//d.haeTiedot(2);
 		
 
 	}

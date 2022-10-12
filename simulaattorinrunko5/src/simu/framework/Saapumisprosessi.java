@@ -17,5 +17,9 @@ public class Saapumisprosessi {
 		Tapahtuma t = new Tapahtuma(tyyppi, Kello.getInstance().getAika()+generaattori.sample());
 		tapahtumalista.lisaa(t);
 	}
+	
+	public void paivitaJakauma(ContinuousGenerator g) {
+		generaattori = g;
+	}
 
 }

@@ -19,8 +19,8 @@ public class edunitest {
 		//System.out.println(luku3.sample());
 		
 		for(int i = 0; i < 10; i++) {
-			Normal test = new Normal(7, 1);
-			summa += test.sample();
+			Normal test = new Normal(2, 1);
+			//summa += test.sample();
 			System.out.println(test.sample());
 		}
 
