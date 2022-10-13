@@ -8,22 +8,15 @@ import simu.model.DAO;
 import simu.model.OmaMoottori;
 import simu.model.Tulokset;
 
-<<<<<<< HEAD
-public class Simulaattori implements Runnable { //Tekstipohjainen
-=======
+
 public class Simulaattori implements Runnable { //Tekstipohjainen
 
 
 	Tulokset tulokset = Tulokset.getInstance();
->>>>>>> refs/remotes/origin/main
 	
 	private ISimuController kontrolleri;
 
-<<<<<<< HEAD
-	Tulokset tulokset = Tulokset.getInstance();
-=======
 
->>>>>>> refs/remotes/origin/main
 
 	public static void main(String[] args) {
 		Simulaattori simu = new Simulaattori();
@@ -32,12 +25,9 @@ public class Simulaattori implements Runnable { //Tekstipohjainen
 		//comment here
 	}
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> refs/remotes/origin/main
 @Override
 public void run() {
 	// TODO Auto-generated method stub
@@ -56,11 +46,6 @@ public void run() {
 	
 	//m.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());
 	//m.aja();
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
-
 	//d.tallennaTiedot();
 	//d.haeTiedot(2);
 		

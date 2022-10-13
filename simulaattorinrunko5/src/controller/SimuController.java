@@ -7,8 +7,11 @@ import javafx.collections.ObservableList;
 import simu.framework.IMoottori;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import simu.model.OmaMoottori;
 import simu.model.Palvelupiste;
 import simu.model.Tulokset;
@@ -88,11 +91,12 @@ public class SimuController extends Canvas implements ISimuController, IControll
 	/*public Palvelupiste[] getPp(){
 	}*/
 
-	public void setMaarat(int kesto, int lentojenMaara, int turvaMaara, int passiMaara) {
+	public void setMaarat(int kesto, int lentojenMaara, int turvaMaara, int passiMaara, int asiakkaat) {
 		tulokset.setSimuloinnin_kokonaisaika(24000);
 		tulokset.setFlightNum(lentojenMaara);
 		tulokset.setTurvatarkastuksienMaara(turvaMaara);
 		tulokset.setPassitarkastuksienMaara(passiMaara);
+		tulokset.setnumOfCustomers(asiakkaat / turvaMaara);
 	}
 
 	@Override
@@ -109,7 +113,7 @@ public class SimuController extends Canvas implements ISimuController, IControll
 	@Override
 	public void kaynnistaSimulointi() {
 		moottori = new OmaMoottori(this);
-		setMaarat(7, 1, 10, 1);
+		//setMaarat(7, 1, 10, 1);
 		moottori.setSimulointiaika(tulokset.getSimuloinnin_kokonaisaika());    
 		moottori.setDelay(100);             
 		//ui.getVisualisointi().tyhjennaNaytto();	
@@ -152,10 +156,10 @@ public class SimuController extends Canvas implements ISimuController, IControll
 		passiY = 94;
 		passiGc.clearRect(0, 0, 770, 200);
 		jonoGc.drawImage(textBg, 500, 90);
-		jonoGc.fillText(String.valueOf(jononPituus), 550, 110);
+		jonoGc.fillText(String.valueOf(jononPituus / Tulokset.getInstance().getPassitarkastuksienMaara()), 550, 110);
 		//passiJonoText.setText(String.valueOf(jononPituus));
 		passiGc.drawImage(passportBgImg, 0, 0, 770, 200);
-		for (int i = 0; i < jononPituus; i++) {
+		for (int i = 0; i < jononPituus / Tulokset.getInstance().getPassitarkastuksienMaara(); i++) {
 			passiGc.drawImage(passengerImg, passiX, passiY, 32, 64);
 			passiX += 16; 
 		}
@@ -175,8 +179,8 @@ public class SimuController extends Canvas implements ISimuController, IControll
 			euX += 16; 
 		}
 		
-		x = x + 30;
-		gc.drawImage(image, x, y, 30, 30);
+		//x = x + 30;
+		//gc.drawImage(image, x, y, 30, 30);
 	}
 
 	@Override
@@ -193,9 +197,9 @@ public class SimuController extends Canvas implements ISimuController, IControll
 			muuX += 16; 
 		}
 		
-		gc.drawImage(image, 10, 10, 10, 10);
-		gc.setFill(Color.RED);
-		gc.fillOval(10,10,10,10);
+		//gc.drawImage(image, 10, 10, 10, 10);
+		//gc.setFill(Color.RED);
+		//gc.fillOval(10,10,10,10);
 
 	}
 

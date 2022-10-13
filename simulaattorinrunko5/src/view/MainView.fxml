@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.22545090180360722" layoutX="-6.0" layoutY="-6.0" prefHeight="1000.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -30,6 +30,7 @@
                   <TextField fx:id="passiMaaraTF" layoutX="6.0" layoutY="191.0" prefHeight="25.0" prefWidth="211.0" />
                   <Button fx:id="hidastaBtn" layoutX="6.0" layoutY="229.0" mnemonicParsing="false" text="Hidasta" />
                   <Button fx:id="nopeutaBtn" layoutX="71.0" layoutY="229.0" mnemonicParsing="false" text="Nopeuta" />
+                  <Button fx:id="tulostaBtn" layoutX="9.0" layoutY="266.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="205.0" text="Tulokset" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>

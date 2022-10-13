@@ -139,8 +139,16 @@ public class Tulokset {
 	
 	public void printSaapumisAjat() {
 		for (int i = 0; i < saapumiset.size(); i++) {
-			System.out.println("EU Lennot: Jos saavut kentälle klo: " + i + ", niin tule näin monta minuuttia etuajassa: " + saapumiset.get(i));
-			System.out.println("Ei-EU Lennot: Jos saavut kentälle klo: " + i + ", niin tule näin monta minuuttia etuajassa: " + (saapumiset.get(i) + (saapumiset_eiEU.get(i) / Tulokset.getInstance().getPassitarkastuksienMaara())));
+			System.out.println("EU Lennot: Jos lentosi lähtee klo: " + i + ", niin varaa " + saapumiset.get(i) + " minuuttia jonottamiseen!");
+			System.out.println("Ei-EU Lennot: Jos lentosi lähtee klo: " + i + ", niin varaa " + (saapumiset.get(i) + (saapumiset_eiEU.get(i) / Tulokset.getInstance().getPassitarkastuksienMaara())) + " minuuttia jonottamiseen!");
 		}
+	}
+	
+	public double getSaapuminenX(int x) {
+		return saapumiset.get(x);
+	}
+	
+	public double getSaapuminenEiEU(int x) {
+		return saapumiset_eiEU.get(x);
 	}
 }

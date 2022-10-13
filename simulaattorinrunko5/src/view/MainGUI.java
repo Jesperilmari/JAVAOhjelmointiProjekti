@@ -31,10 +31,6 @@ public class MainGUI extends Application{
 	int lentojenMaara;
 	int turvaMaara;
 	int passiMaara;
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
 
 	/*@FXML
 	private ListView ppListView;*/
@@ -44,6 +40,8 @@ public class MainGUI extends Application{
 	private Button hidastaBtn;
 	@FXML
 	private Button nopeutaBtn;
+	@FXML
+	private Button tulostaBtn;
 	@FXML
 	private TextField kestoTF;
 	@FXML
@@ -118,6 +116,7 @@ public class MainGUI extends Application{
 		startBtn = (Button) scene.lookup("#startBtn");
 		hidastaBtn = (Button) scene.lookup("#hidastaBtn");
 		nopeutaBtn = (Button) scene.lookup("#nopeutaBtn");
+		tulostaBtn = (Button) scene.lookup("#tulostaBtn");
 
 		kestoTF = (TextField) scene.lookup("#kestoTF");
 		lentojenMaaraTF = (TextField) scene.lookup("#lentojenMaaraTF");
@@ -164,11 +163,8 @@ public class MainGUI extends Application{
 					turvaMaara = Integer.parseInt(turvaMaaraTF.getText());
 					passiMaara = Integer.parseInt(passiMaaraTF.getText());
 
-					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara);
-<<<<<<< HEAD
-					
-=======
->>>>>>> refs/remotes/origin/main
+					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara, lentojenMaara * 250);
+
 					simuController.kaynnistaSimulointi();
 
 				} catch (NumberFormatException e ) {
@@ -203,16 +199,30 @@ public class MainGUI extends Application{
 			}
 		});
 		
+		tulostaBtn.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(MainGUI.class.getResource("DataView.fxml"));
+					root = loader.load();
+		            Stage stage = new Stage();
+		            stage.setTitle("My New Stage Title");
+		            stage.setScene(new Scene(root, 450, 450));
+		            stage.show();
+		            
+				} catch (Exception e) {
+					
+				}
+			}
+		});
+		
 		
 		//hidastaBtn.setOnAction(e -> simuController.hidasta());
         //nopeutaBtn.setOnAction(e -> simuController.nopeuta());
 	}
-<<<<<<< HEAD
-	
-=======
 
-
->>>>>>> refs/remotes/origin/main
 	public static void main(String[] args) {
 		launch(args);
 	}
