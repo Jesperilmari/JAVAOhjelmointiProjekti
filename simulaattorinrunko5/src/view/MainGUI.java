@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,12 +17,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 //import simu.model.Palvelupiste;
+import simu.model.Tulokset;
 
 public class MainGUI extends Application{
 
@@ -34,6 +38,9 @@ public class MainGUI extends Application{
 
 	/*@FXML
 	private ListView ppListView;*/
+	
+	Alert data = new Alert(AlertType.NONE);
+	
 	@FXML
 	private Button startBtn;
 	@FXML
@@ -80,6 +87,8 @@ public class MainGUI extends Application{
 	String euBgSrc = "\\view\\Images\\euDepartureBG.png";
 	String worldwideBgSrc = "\\view\\Images\\WorldwideBG.png";
 	String jonoBgSrc = "\\view\\Images\\JononPituus.png";
+	
+	private String tulokset;
 	
 	Image passengerImg = new Image(passengerImgSrc);
 	Image passengerBackwardsImg = new Image(passengerBwImgSrc);
@@ -164,7 +173,19 @@ public class MainGUI extends Application{
 					passiMaara = Integer.parseInt(passiMaaraTF.getText());
 
 					simuController.setMaarat(kesto, lentojenMaara, turvaMaara, passiMaara, lentojenMaara * 250);
-
+					
+					turvaGc.clearRect(0, 0, 770, 200);
+					lentoGc.clearRect(0, 0, 770, 200);
+					passiGc.clearRect(0, 0, 770, 200);
+					euGc.clearRect(0, 0, 770, 200);
+					muuGc.clearRect(0, 0, 770, 200);
+					
+					turvaGc.drawImage(turvaBgImg, 0, 0, 770, 200);
+					lentoGc.drawImage(jono, 0, 0, 770, 200);
+					passiGc.drawImage(passportBgImg, 0, 0, 770, 200);
+					euGc.drawImage(euBgImg, 0, 0, 770, 200);
+					muuGc.drawImage(worldwideBgImg, 0, 0, 770, 200);
+					
 					simuController.kaynnistaSimulointi();
 
 				} catch (NumberFormatException e ) {
@@ -204,14 +225,42 @@ public class MainGUI extends Application{
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					
+					
+					data.setTitle("Tulokset");
+					data.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+					Node closeButton = data.getDialogPane().lookupButton(ButtonType.CLOSE);
+					
+					tulokset = Tulokset.getInstance().getTulokset();
+					
+					
+					//data.setContentText(tulokset);
+					
+		            closeButton.managedProperty().bind(closeButton.visibleProperty());
+		            closeButton.setVisible(false);
+		            data.setWidth(1200);
+		            data.resizableProperty();
+		            
+		            TextArea area = new TextArea();
+		            area.setText(tulokset);
+		            area.setWrapText(true);
+		            area.setEditable(false);
+
+		            data.getDialogPane().setContent(area);
+		            data.setResizable(true);
+					data.show();
+					/*
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(MainGUI.class.getResource("DataView.fxml"));
 					root = loader.load();
+					
+					
+					
 		            Stage stage = new Stage();
-		            stage.setTitle("My New Stage Title");
+		            stage.setTitle("Tulokset");
 		            stage.setScene(new Scene(root, 450, 450));
 		            stage.show();
-		            
+		            */
 				} catch (Exception e) {
 					
 				}

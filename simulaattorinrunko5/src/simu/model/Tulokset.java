@@ -13,6 +13,8 @@ public class Tulokset {
 	private int keskimaarainen_palveluaika;
 	private int turvaTarkastustenMaara;
 	private int passiTarkastustenMaara;
+	private int ei_eu_asiakkaat;
+	private int eu_asiakkaat;
 	
 	private double simulationTime;
 	private int flightNum;
@@ -144,11 +146,37 @@ public class Tulokset {
 		}
 	}
 	
+	public void lisaaEU(int i) {
+		this.eu_asiakkaat = i;
+	}
+	
+	public void lisaaeiEU(int i) {
+		this.ei_eu_asiakkaat = i;
+	}
+	
+	public int getEU() {
+		return eu_asiakkaat;
+	}
+	
+	public int geteiEU() {
+		return ei_eu_asiakkaat;
+	}
+	
 	public double getSaapuminenX(int x) {
 		return saapumiset.get(x);
 	}
 	
 	public double getSaapuminenEiEU(int x) {
 		return saapumiset_eiEU.get(x);
+	}
+	
+	public String getTulokset() {
+		String tulokset = "\n" + "Tulokset: " + "\n" + "Simuloinnin kokonaisaika: " + Tulokset.getInstance().getSimuloinnin_kokonaisaika() + "\n" + "Jokainen turvatarkastuspiste palveli: " + Tulokset.getInstance().getPalvellut_asiakkaat() + " asiakasta.";
+		tulokset += "\n" + "Jokainen passitarkastus palveli: " + Tulokset.getInstance().geteiEU() + " asiakasta.";
+		for (int i = 0; i < saapumiset.size(); i++) {
+			tulokset += "\n" + "EU Lennot: Jos lentosi lähtee klo: " + i + ", niin varaa " + saapumiset.get(i) + " minuuttia jonottamiseen!";
+			tulokset += "Ei-EU Lennot: Jos lentosi lähtee klo: " + i + ", niin varaa " + (saapumiset.get(i) + (saapumiset_eiEU.get(i) / Tulokset.getInstance().getPassitarkastuksienMaara()) + " minuuttia jonottamiseen!");
+		}
+		return tulokset;
 	}
 }

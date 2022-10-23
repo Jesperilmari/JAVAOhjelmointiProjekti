@@ -208,7 +208,10 @@ public class OmaMoottori extends Moottori{
 		
 		System.out.println("\n\n" + "Simulointi päättyi kello " + Kello.getInstance().getAika());
 		System.out.println("Palveltuja asiakkaita yhteensä: " + palvellut);
+		Tulokset.getInstance().setPalvellut_asiakkaat(palvellut);
 		System.out.println("Palveltuja EU asiakkaita: " + eu_asiakkaat + " ja palveltuja ei EU asiakkaita: " + ei_eu_asiakkaat);
+		Tulokset.getInstance().lisaaeiEU(eu_asiakkaat);
+		Tulokset.getInstance().lisaaeiEU(ei_eu_asiakkaat);
 		//System.out.println("Jonottamaan jäi yhteensä: " + (palvelupisteet[0].jononPituus() + palvelupisteet[1].jononPituus() + palvelupisteet[2].jononPituus() + palvelupisteet[3].jononPituus() + palvelupisteet[4].jononPituus() + palvelupisteet[5].jononPituus()));
 		
 		//System.out.println("Turvatarkastuksen palvellut asiakkaat: " + palvelupisteet[0].getPalvellut_asiakkaat() + " ja niiden palvelemiseen käytetty aika: " + palvelupisteet[0].getPalveluaika());
