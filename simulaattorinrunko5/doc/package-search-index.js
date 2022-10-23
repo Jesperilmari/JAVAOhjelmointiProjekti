@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"controller"},{"l":"eduni.distributions"},{"l":"simu.framework"},{"l":"simu.model"},{"l":"test"},{"l":"testi"},{"l":"view"}]

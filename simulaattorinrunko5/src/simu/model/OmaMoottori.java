@@ -17,15 +17,38 @@ import simu.framework.Saapumisprosessi;
 import simu.framework.Tapahtuma;
 import controller.SimuController;
 
+/**
+ * Represent OmaMoottori class 
+ * @author RYHMÄ 10
+ * @version 1.8.0 Build 2022, October, 18
+ *
+ */
 
 public class OmaMoottori extends Moottori{
 	
+	/**
+	 * Arriving process of customer
+	 */
 	private Saapumisprosessi saapumisprosessi;
 	
+	/**
+	 * Instance variable for planes 
+	 */
 	public static int lennot = 20;
+	
+	/**
+	 * Instance variable for services 
+	 */
 	private int palvellut;
 	
+	/**
+	 * Instance variable for inside EU customers 
+	 */
 	private int eu_asiakkaat;
+	
+	/**
+	 * Instance variable for outside EU customers
+	 */
 	private int ei_eu_asiakkaat;
 	
 	double temp1 = 0;
@@ -35,7 +58,15 @@ public class OmaMoottori extends Moottori{
 	private int testt = 0;
 
 	private boolean joku = false;
-
+	
+	
+	/**
+	 * Constructor for OmaMoottori Class
+	 * @param kontrolleri 
+	 * The purpose of this constructor is to create TurvaIn, lahtoporttiInEU, lahtoporttiInMuu, PassiIn, lahtoporttiOut, lahtoporttiOut_eiEU Customer Service Points
+	 * 
+	 * 
+	 */
 	public OmaMoottori(IControllerMtoV kontrolleri){
 		super(kontrolleri);
 		palvelupisteet = new Palvelupiste[6];
@@ -68,7 +99,9 @@ public class OmaMoottori extends Moottori{
 
 	}
 
-	
+	/**
+	 * initializations
+	 */
 	@Override
 	protected void alustukset() {
 		Kello.getInstance().setAika(0);
@@ -80,6 +113,11 @@ public class OmaMoottori extends Moottori{
 		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
 	}
 	
+	
+	/**
+	 * suoritaTapahtuma Executes the events
+	 * @see luoLennot cases
+	 */
 	@Override
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 		Asiakas a;
@@ -88,9 +126,6 @@ public class OmaMoottori extends Moottori{
 		haeAjat();
 		
 		//Päivitetään jakauma hitaaksi/nopeammaksi !
-		
-		
-		
 		switch (t.getTyyppi()) {
 		
 			
@@ -197,6 +232,12 @@ public class OmaMoottori extends Moottori{
 		}	
 	}
 	
+	
+	/**
+	 * Gets the results
+	 * @see DAO Class and tellennaTiedot method
+	 * 
+	 */
 	@Override
 	protected void tulokset() {	
 		
@@ -241,7 +282,10 @@ public class OmaMoottori extends Moottori{
 		
 		
 	}
-
+	/**
+	 * Gets the customer service point average time 
+	 * 
+	 */
 	
 	public void haeAjat() {
 		

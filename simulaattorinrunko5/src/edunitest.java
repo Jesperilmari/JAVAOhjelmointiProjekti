@@ -10,7 +10,7 @@ public class edunitest {
 		int luvut = 0;
 		double summa = 0;
 		
-		Normal luku = new Normal(r.nextInt(50, 70), r.nextInt(75, 125));
+		//Normal luku = new Normal(r.nextInt(50, 70), r.nextInt(75, 125));
 		Normal luku2 = new Normal(1, 1);
 		Negexp luku3 = new Negexp(10,5);
 		

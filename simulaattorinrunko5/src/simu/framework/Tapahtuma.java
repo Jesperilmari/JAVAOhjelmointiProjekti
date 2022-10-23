@@ -2,17 +2,33 @@ package simu.framework;
 
 import simu.model.TapahtumanTyyppi;
 
+/**
+ * Represent Tapahtuma Class which implements Comprable<Tapahtuma> 
+ * @author RYHMÄ 10
+ * @version 1.8.0 Build 2022, October, 21
+ *
+ */
+
 public class Tapahtuma implements Comparable<Tapahtuma> {
 	
 		
 	private TapahtumanTyyppi tyyppi;
 	private double aika;
 	
+	/**
+	 * This method is for event type
+	 * @param tyyppi
+	 * @param aika
+	 */
 	public Tapahtuma(TapahtumanTyyppi tyyppi, double aika){
 		this.tyyppi = tyyppi;
 		this.aika = aika;
 	}
 	
+	/**
+	 * 
+	 * @param tyyppi
+	 */
 	public void setTyyppi(TapahtumanTyyppi tyyppi) {
 		this.tyyppi = tyyppi;
 	}

@@ -17,9 +17,19 @@ import simu.model.Palvelupiste;
 import simu.model.Tulokset;
 import testi.Simulaattori;
 
+
+/**
+ * Represent SimuController Class extends Canvas which implements ISimuController and IControllerMtoV 
+ * @author RYHMÄ 10
+ * @version 1.8.0 Build 2022, October, 21
+ *
+ */
 public class SimuController extends Canvas implements ISimuController, IControllerMtoV {
 	
 	//OmaMoottori omaMoottori = new OmaMoottori();
+	
+	
+	
 	
 	private IMoottori moottori;
 	
@@ -36,7 +46,9 @@ public class SimuController extends Canvas implements ISimuController, IControll
 	private Label passiJonoText;
 	private Label euJonoText;
 	private Label muuJonoText;
-	
+	/**
+	 *Instance variable for SimuController 
+	 */
 	int turvaX = 33;
 	int turvaY = 94;
 	int passiX;
@@ -54,6 +66,7 @@ public class SimuController extends Canvas implements ISimuController, IControll
 	String lentoBgSrc = "\\view\\Images\\skyBackground.png";
 	String turvaBgSrc = "\\view\\Images\\SecurityBG.png";
 	String passportBgSrc = "\\view\\Images\\passportBG.png";
+
 	String euBgSrc = "\\view\\Images\\euDepartureBG.png";
 	String worldwideBgSrc = "\\view\\Images\\WorldwideBG.png";
 	String textBgSrc = "\\view\\Images\\textBg.png";
@@ -69,6 +82,21 @@ public class SimuController extends Canvas implements ISimuController, IControll
 	
 	//private ObservableList<Palvelupiste> ppData = FXCollections.observableArrayList();
 	
+	
+	
+	/**
+	 * Default Constructor for SimuController
+	 * @param mainGUI
+	 * @param turvaGc
+	 * @param passiGc
+	 * @param euGc
+	 * @param muuGc
+	 * @param lentoGc
+	 * @param turvaJonoText
+	 * @param passiJonoText
+	 * @param euJonoText
+	 * @param muuJonoText
+	 */
 	public SimuController(MainGUI mainGUI, GraphicsContext turvaGc, GraphicsContext passiGc, GraphicsContext euGc, GraphicsContext muuGc, GraphicsContext lentoGc, Label turvaJonoText, Label passiJonoText, Label euJonoText, Label muuJonoText) {
 		this.view = mainGUI;
 		this.turvaGc = turvaGc;

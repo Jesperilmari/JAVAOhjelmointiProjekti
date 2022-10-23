@@ -4,18 +4,42 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
+
+/**
+ * Represent DAO class 
+ * @author RYHMÄ 10
+ * @version 1.8.0 Build 2022, October, 18
+ *
+ */
+
 public class DAO {
 	
+	/**
+	 * Instance variable for Database Connection
+	 */
 	private static String Osoite = "localhost";
+	/**
+	 * Instance variable for Database Connection
+	 */
 	private static String db = "kanta";
+	/**
+	 * Instance variable for Database Connection
+	 */
 	private static String kayttis = "kayttis";
+	/**
+	 * Instance variable for Database Connection
+	 */
 	private static String salis = "root";
-	
-	private final int kerta = 1;
-	
-	
+	/**
+	 * Instance variable for Database Connection
+	 */
 	private Connection conn;
 	
+	
+	/**
+	 * Database connection 
+	 * @SQLException e if the connection with database is not successful
+	 */
 	
 	public DAO() {
 		try {
@@ -25,9 +49,14 @@ public class DAO {
 		}
 	}
 	
+	
+	
+	/**
+	 * To save data into Database
+	 * @return TRUE if the data has been successfully saved to database
+	 * @SQLException e if the data is not saved to database successfully
+	 */
 	public boolean tallennaTiedot() {
-		
-		
 		try (PreparedStatement t = conn.prepareStatement("INSERT INTO startData (simulationtime, number_of_flights, flight_capacity, number_of_customers, arrive01, arrive02, arrive03, arrive04, arrive05, arrive06, arrive07, arrive08, arrive09, arrive10, arrive11, arrive12, arrive13, arrive14, arrive15, arrive16, arrive17, arrive18, arrive19, arrive20, arrive21, arrive22, arrive23)" +
 		"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
 			t.setDouble(1, Tulokset.getInstance().getSimuloinnin_kokonaisaika());
@@ -67,6 +96,13 @@ public class DAO {
 		return true;
 		
 	}
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return Returns the data from database
+	 */
 	
 	
 	
